@@ -140,10 +140,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd925cad587303147ba728ed4963dad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 2
-  deceleration: 2
+  acceleration: 4
+  deceleration: 4
   maximumWalkVelocity: 0.5
   maximumRunVelocity: 2
+--- !u!114 &231868232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231868228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c8c0fae21ccc7e4cb39096d76af81a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementInput: {x: 0, y: 0}
 --- !u!1 &649424481
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,10 +438,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ch44_nonPBR@Idle (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1172324090021531726, guid: d20991d1371e55a498a10e4141c3ef7e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 55f0e22fb9d7d4a429f3ecc5c9b45c18, type: 2}
+    - target: {fileID: 1172324090021531726, guid: d20991d1371e55a498a10e4141c3ef7e, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 55f0e22fb9d7d4a429f3ecc5c9b45c18, type: 2}
     - target: {fileID: 5866666021909216657, guid: d20991d1371e55a498a10e4141c3ef7e, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 26af207bf00a2cb4cbe697136254e8ec, type: 2}
+    - target: {fileID: 5866666021909216657, guid: d20991d1371e55a498a10e4141c3ef7e, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: d20991d1371e55a498a10e4141c3ef7e, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -436,6 +465,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d20991d1371e55a498a10e4141c3ef7e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 231868229}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d20991d1371e55a498a10e4141c3ef7e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 231868232}
   m_SourcePrefab: {fileID: 100100000, guid: d20991d1371e55a498a10e4141c3ef7e, type: 3}
 --- !u!1 &2016913130
 GameObject:
