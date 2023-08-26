@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mech katana
+* source:	https://sketchfab.com/3d-models/mech-katana-7e99f64f3d194c778ab47fc42f4dd267
+* author:	Emm (https://sketchfab.com/em666)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mech katana" (https://sketchfab.com/3d-models/mech-katana-7e99f64f3d194c778ab47fc42f4dd267) by Emm (https://sketchfab.com/em666) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
