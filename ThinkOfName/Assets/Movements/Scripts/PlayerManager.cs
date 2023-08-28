@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
     PlayerLocomotion playerLocomotion;
 
     public bool isInteracting;
+    public bool isAttacking;
 
     private void Awake(){
         animator = GetComponent<Animator>();
@@ -30,6 +31,9 @@ public class PlayerManager : MonoBehaviour
     private void LateUpdate() {
         cameraManager.HandleAllCameraMovement();
         isInteracting = animator.GetBool("isInteracting");
+        playerLocomotion.isJumping = animator.GetBool("isJumping");
+        animator.SetBool("isGrounded", playerLocomotion.isGrounded);
+        isAttacking = animator.GetBool("isAttacking");
     }
 
 }

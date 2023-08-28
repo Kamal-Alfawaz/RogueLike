@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
     PlayerControls playerControls;
     AnimatorManager animatorManager;
     PlayerLocomotion playerLocomotion;
+    PlayerAttack playerAttack;
 
     public Vector2 movementInput;
     public Vector2 cameraInput;
@@ -19,9 +20,13 @@ public class InputManager : MonoBehaviour
     public float horizontalInput;
 
     public bool sprint_input;
+    public bool jump_input;
+
+    public bool leftClick_input;
 
     private void Awake()
     {
+        playerAttack = GetComponent<PlayerAttack>();
         animatorManager = GetComponent<AnimatorManager>();
         playerLocomotion = GetComponent<PlayerLocomotion>();
     }
@@ -36,6 +41,10 @@ public class InputManager : MonoBehaviour
 
             playerControls.PlayerActions.Sprint.performed += i => sprint_input = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprint_input = false;
+            playerControls.PlayerActions.Jump.performed += i => jump_input = true;
+
+            playerControls.PlayerActions.Attack.performed += i => leftClick_input = true;
+            playerControls.PlayerActions.Attack.canceled += i => leftClick_input = false;
         }
         playerControls.Enable();
     }
@@ -48,8 +57,8 @@ public class InputManager : MonoBehaviour
     {
         HandleMovementInput();
         HandleSprintingInput();
-        // HandleJumpingInput();
-        // HandleActionInput();
+        HandleJumpingInput();
+        HandleAttackInput();
     }
 
     private void HandleMovementInput()
@@ -73,4 +82,17 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    private void HandleJumpingInput(){
+        if (jump_input){
+            jump_input = false;
+            playerLocomotion.HandleJumping();
+        }
+    }
+
+    private void HandleAttackInput(){
+        if(leftClick_input){
+            leftClick_input = false;
+            playerAttack.HandleMainAttack();
+        }
+    }
 }

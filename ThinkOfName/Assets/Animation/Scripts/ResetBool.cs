@@ -12,8 +12,7 @@ public class ResetBool : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool("isInteracting", isInteractingStatus);
-        animator.SetBool("doneLand", true);
+        animator.SetBool(isInteractingBool, isInteractingStatus);
     }
 
 }
