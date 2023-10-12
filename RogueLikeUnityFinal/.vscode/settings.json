@@ -57,5 +57,5 @@
         "Temp/": true
     },
     "omnisharp.enableRoslynAnalyzers": true,
-    "dotnet.defaultSolution": "RogueLikeTest.sln"
+    "dotnet.defaultSolution": "RogueLikeUnityFinal.sln"
 }
