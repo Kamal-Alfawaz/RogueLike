@@ -8,6 +8,10 @@ public class FloatingHealthbar : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private Vector3 offset;
 
+    void Start(){
+        currentCamera = GameObject.Find ("MainCamera").GetComponent<Camera>();
+    }
+
     public void UpdateHealthBar(float currentValue, float maxValue){
         slider.value = currentValue / maxValue;
     }

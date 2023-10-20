@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 
     public float health = 1f;
     public float maxHealth = 1f;
+    public float damage = 1f;
 
     public NavMeshAgent agent;
 
@@ -28,7 +29,13 @@ public class Enemy : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
-    private void Awake() {
+    private RandomSpawner SpawnerAndDifficulty;
+
+    void Start(){
+        SpawnerAndDifficulty = GameObject.Find("DifficultyManager").GetComponent<RandomSpawner>();
+    }
+
+    private void Awake(){
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         floatingHealthbar = GetComponentInChildren<FloatingHealthbar>();
@@ -117,13 +124,12 @@ public class Enemy : MonoBehaviour
     void Die(){
         Destroy(gameObject);
         Loot();
-
+        SpawnerAndDifficulty.EnemyKilled();
     }
 
     public void Loot(){
-        pass
+        
     }
-    
 
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
