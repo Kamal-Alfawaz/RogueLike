@@ -91,6 +91,7 @@ public class RandomSpawner : MonoBehaviour
             GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
 
             // Adjust the enemy parameters based on the difficulty level
+            enemy.GetComponent<Enemy>().maxHealth = baseHealth * Mathf.Pow(healthModifier, difficultyLevel - 1);
             enemy.GetComponent<Enemy>().health = baseHealth * Mathf.Pow(healthModifier, difficultyLevel - 1);
             enemy.GetComponent<Enemy>().damage = baseDamage * Mathf.Pow(damageModifier, difficultyLevel - 1);
 
@@ -102,7 +103,6 @@ public class RandomSpawner : MonoBehaviour
         }
     }
 
-    // A method to decrement the current number of enemies when one is killed (this should be called from the Enemy script when it dies)
     public void EnemyKilled()
     {
         currentEnemies--;

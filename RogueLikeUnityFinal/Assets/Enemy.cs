@@ -1,9 +1,16 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] FloatingHealthbar floatingHealthbar;
+
+    // The duration for which the health bar should be shown (in seconds)
+    public float healthBarDuration = 10f;
+
+    // A boolean variable to indicate if the enemy is being attacked
+    private bool isAttacked = false;
 
     public float health = 1f;
     public float maxHealth = 1f;
@@ -32,7 +39,7 @@ public class Enemy : MonoBehaviour
     private RandomSpawner SpawnerAndDifficulty;
 
     void Start(){
-        SpawnerAndDifficulty = GameObject.Find("DifficultyManager").GetComponent<RandomSpawner>();
+        SpawnerAndDifficulty = GameObject.Find("Spawner").GetComponent<RandomSpawner>();
     }
 
     private void Awake(){
@@ -113,12 +120,36 @@ public class Enemy : MonoBehaviour
     }
 
     public void takeDamage(float amount){
-        floatingHealthbar.gameObject.SetActive(true);
         health -= amount;
         floatingHealthbar.UpdateHealthBar(health, maxHealth);
         if (health <= 0f){
             Die();
+        }else{
+            // Activate the health bar
+            floatingHealthbar.gameObject.SetActive(true);
+
+            // Check if the enemy is already being attacked
+            if (!isAttacked)
+            {
+                // Set the isAttacked flag to true
+                isAttacked = true;
+
+                // Start a coroutine that waits for the health bar duration and then deactivates the health bar
+                StartCoroutine(HideHealthBar());
+            }
         }
+    }
+
+    private IEnumerator HideHealthBar()
+    {
+        // Wait for the specified time
+        yield return new WaitForSeconds(healthBarDuration);
+
+        // Deactivate the health bar
+        floatingHealthbar.gameObject.SetActive(false);
+
+        // Set the isAttacked flag to false
+        isAttacked = false;
     }
 
     void Die(){
