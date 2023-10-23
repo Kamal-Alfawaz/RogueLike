@@ -96,6 +96,11 @@ public class ThirdPersonShooterController : MonoBehaviour
         if(starterAssetsInputs.jump){
             CallItemOnJump();
         }
+
+        if(starterAssetsInputs.grenade){
+            // abdi do this part
+        }
+
     }
     
     //Related to the player's items

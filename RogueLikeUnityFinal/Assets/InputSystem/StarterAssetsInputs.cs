@@ -1,6 +1,7 @@
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements.Experimental;
 #endif
 
 namespace StarterAssets
@@ -13,6 +14,8 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool shoot;
+		// you then add a boolean if ur current state is throwing grenade
+		public bool grenade;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -49,6 +52,11 @@ namespace StarterAssets
 		{
 			ShootInput(value.isPressed);
 		}
+		// this part i coded in aswell, again look how similar it is to the other On states
+		public void OnGrenade(InputValue value){
+			GrenadeInput(value.isPressed);
+		}
+		//
 #endif
 
 
@@ -77,6 +85,13 @@ namespace StarterAssets
 			shoot = newShootState;
 		}
 
+		// abdi this is the part that i coded in, notice how similar it is to the other states
+		private void GrenadeInput(bool newGrenadeState)
+		{
+			grenade = newGrenadeState;
+		}
+		// 
+
 		private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
@@ -87,5 +102,4 @@ namespace StarterAssets
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
 	}
-	
 }
