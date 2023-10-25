@@ -17,10 +17,6 @@ public class ThirdPersonShooterController : MonoBehaviour
     private StarterAssetsInputs starterAssetsInputs;
     private ThirdPersonController thirdPersonController;
 
-    // related to the particleSystem to show the particles in use when shooting
-    public ParticleSystem muzzleFlashLeft;
-    public ParticleSystem muzzleFlashRight;
-
     // related to the character's gun's fire-rate and damage.
     public float impactForce = 30f;
     public float damage = 1f;
@@ -35,12 +31,12 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     private void Start(){
         StartCoroutine(CallItemUpdate());
-        if(Instance != null){
-            Destroy(this.gameObject);
-            return;
-        }
-        Instance = this;
-        GameObject.DontDestroyOnLoad(this.gameObject);
+        // if(Instance != null){
+        //     Destroy(this.gameObject);
+        //     return;
+        // }
+        // Instance = this;
+        // GameObject.DontDestroyOnLoad(this.gameObject);
     }
 
     // Awake Method only gets called as soon as the scene starts, i.e when the game/level starts
@@ -98,7 +94,13 @@ public class ThirdPersonShooterController : MonoBehaviour
         }
 
         if(starterAssetsInputs.grenade){
-            // abdi do this part
+            Debug.Log("throwing grenade");
+            starterAssetsInputs.grenade = false;
+        }
+
+        if(starterAssetsInputs.slide){
+            Debug.Log("sliding");
+            starterAssetsInputs.slide = false;
         }
 
     }

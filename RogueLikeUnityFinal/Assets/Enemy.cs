@@ -1,6 +1,8 @@
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -37,6 +39,8 @@ public class Enemy : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange;
 
     private RandomSpawner SpawnerAndDifficulty;
+
+    public WeightedRandomList<GameObject> lootTable;
 
     void Start(){
         SpawnerAndDifficulty = GameObject.Find("Spawner").GetComponent<RandomSpawner>();
@@ -108,6 +112,7 @@ public class Enemy : MonoBehaviour
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            Destroy(rb, 1f);
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -159,7 +164,9 @@ public class Enemy : MonoBehaviour
     }
 
     public void Loot(){
-        
+        GameObject item = lootTable.GetRandom();
+        Vector3 position = transform.position;
+        Instantiate(item, position, Quaternion.identity);
     }
 
     private void OnDrawGizmosSelected() {

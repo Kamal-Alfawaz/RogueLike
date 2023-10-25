@@ -16,6 +16,8 @@ namespace StarterAssets
 		public bool shoot;
 		// you then add a boolean if ur current state is throwing grenade
 		public bool grenade;
+		public bool slide;
+		public bool pause;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -56,9 +58,16 @@ namespace StarterAssets
 		public void OnGrenade(InputValue value){
 			GrenadeInput(value.isPressed);
 		}
+
+		public void OnSlide(InputValue value){
+			SlideInput(value.isPressed);
+		}
+
+		public void OnPause(InputValue value){
+			PauseInput(value.isPressed);
+		}
 		//
 #endif
-
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{
@@ -86,9 +95,17 @@ namespace StarterAssets
 		}
 
 		// abdi this is the part that i coded in, notice how similar it is to the other states
-		private void GrenadeInput(bool newGrenadeState)
+		public void GrenadeInput(bool newGrenadeState)
 		{
 			grenade = newGrenadeState;
+		}
+
+		public void SlideInput(bool newSlideState){
+			slide = newSlideState;
+		}
+
+		public void PauseInput(bool newPauseState){
+			pause = newPauseState;
 		}
 		// 
 
