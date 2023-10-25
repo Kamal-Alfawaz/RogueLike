@@ -1,10 +1,8 @@
 using UnityEngine;
 using Cinemachine;
 using StarterAssets;
-using UnityEngine.UIElements;
 using System.Collections.Generic;
 using System.Collections;
-using UnityEditor.PackageManager;
 
 public class ThirdPersonShooterController : MonoBehaviour
 {
@@ -24,6 +22,20 @@ public class ThirdPersonShooterController : MonoBehaviour
     public float fireRate = 15f;
     private float nextTimeToFire = 0f;
 
+    [Header("References")]
+    public Transform orientation;
+    public Transform playerCam;
+    private Rigidbody rb;
+
+    [Header("Dashing")]
+    public float dashForce;
+    public float dashUpwardForce;
+    public float dashDuration;
+
+    [Header("Cooldown")]
+    public float dashCd;
+    private float dashCdTimer;
+
     //related to character's Health
     public float health = 100f;
 
@@ -41,6 +53,7 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     // Awake Method only gets called as soon as the scene starts, i.e when the game/level starts
     private void Awake(){
+        rb = GetComponent<Rigidbody>();
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         thirdPersonController = GetComponent<ThirdPersonController>();
     }
@@ -100,8 +113,20 @@ public class ThirdPersonShooterController : MonoBehaviour
 
         if(starterAssetsInputs.dash){
             Debug.Log("Dashing");
+            Dash();
             starterAssetsInputs.dash = false;
         }
+    }
+
+    private void Dash(){
+        Vector3 forceToApply = orientation.forward * dashForce + orientation.up * dashUpwardForce;
+
+        rb.AddForce(forceToApply, ForceMode.Impulse);
+        //Invoke(nameof(ResetDash), dashDuration);
+    }
+
+    private void ResetDash(){
+
     }
     
     //Related to the player's items
