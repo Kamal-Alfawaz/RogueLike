@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] FloatingHealthbar floatingHealthbar;
 
+    private AudioSource HitMarker;
+
     // The duration for which the health bar should be shown (in seconds)
     public float healthBarDuration = 10f;
 
@@ -50,6 +52,7 @@ public class Enemy : MonoBehaviour
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         floatingHealthbar = GetComponentInChildren<FloatingHealthbar>();
+        HitMarker = GetComponent<AudioSource>();
         floatingHealthbar.gameObject.SetActive(false);
     }
 
@@ -125,6 +128,7 @@ public class Enemy : MonoBehaviour
     }
 
     public void takeDamage(float amount){
+        HitMarker.Play();
         health -= amount;
         floatingHealthbar.UpdateHealthBar(health, maxHealth);
         if (health <= 0f){
