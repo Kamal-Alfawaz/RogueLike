@@ -98,11 +98,10 @@ public class ThirdPersonShooterController : MonoBehaviour
             starterAssetsInputs.grenade = false;
         }
 
-        if(starterAssetsInputs.slide){
-            Debug.Log("sliding");
-            starterAssetsInputs.slide = false;
+        if(starterAssetsInputs.dash){
+            Debug.Log("Dashing");
+            starterAssetsInputs.dash = false;
         }
-
     }
     
     //Related to the player's items

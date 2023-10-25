@@ -16,7 +16,7 @@ namespace StarterAssets
 		public bool shoot;
 		// you then add a boolean if ur current state is throwing grenade
 		public bool grenade;
-		public bool slide;
+		public bool dash;
 		public bool pause;
 
 		[Header("Movement Settings")]
@@ -60,7 +60,7 @@ namespace StarterAssets
 		}
 
 		public void OnSlide(InputValue value){
-			SlideInput(value.isPressed);
+			DashInput(value.isPressed);
 		}
 
 		public void OnPause(InputValue value){
@@ -100,8 +100,8 @@ namespace StarterAssets
 			grenade = newGrenadeState;
 		}
 
-		public void SlideInput(bool newSlideState){
-			slide = newSlideState;
+		public void DashInput(bool newDashState){
+			dash = newDashState;
 		}
 
 		public void PauseInput(bool newPauseState){
