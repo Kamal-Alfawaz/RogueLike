@@ -959,3 +959,10 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 196526
+  packageName: Starter Assets - Third Person Character Controller | URP
+  packageVersion: 
+  assetPath: Assets/Character/Animations/Jump--Jump.anim.fbx
+  uploadId: 0

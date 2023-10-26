@@ -12,3 +12,10 @@ ScriptedImporter:
   wrapperCodePath: 
   wrapperClassName: 
   wrapperCodeNamespace: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 196526
+  packageName: Starter Assets - Third Person Character Controller | URP
+  packageVersion: 
+  assetPath: Assets/InputSystem/PlayerMovements/StarterAssets.inputactions
+  uploadId: 0

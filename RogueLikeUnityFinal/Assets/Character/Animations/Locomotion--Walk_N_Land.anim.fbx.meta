@@ -924,3 +924,10 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 196526
+  packageName: Starter Assets - Third Person Character Controller | URP
+  packageVersion: 
+  assetPath: Assets/Character/Animations/Locomotion--Walk_N_Land.anim.fbx
+  uploadId: 0
