@@ -13,7 +13,7 @@ public abstract class Item
 
     }
 
-    public virtual void OnHit(ThirdPersonShooterController player, Enemy enemy, int count){
+    public virtual void OnPickupDamage(ThirdPersonShooterController player){
 
     }
 
@@ -21,7 +21,7 @@ public abstract class Item
 
     }
 
-    public virtual void JumpAndSpeed(ThirdPersonController player){
+    public virtual void OnPickup(ThirdPersonController player){
         
     }
 }
@@ -45,8 +45,8 @@ public class FireDamageItem : Item
         return "Fire Damage Item";
     }
 
-    public override void OnHit(ThirdPersonShooterController player, Enemy enemy, int count){
-        enemy.health -= 10 * count;
+    public override void OnPickupDamage(ThirdPersonShooterController player){
+        player.damage += 10;
     }
 }
 
@@ -70,7 +70,7 @@ public class SpeedBoost : Item{
         return "Speed Boost";
     }
 
-    public override void JumpAndSpeed(ThirdPersonController player){
+    public override void OnPickup(ThirdPersonController player){
         player.MoveSpeed += 1;
         player.SprintSpeed += 1;
     }

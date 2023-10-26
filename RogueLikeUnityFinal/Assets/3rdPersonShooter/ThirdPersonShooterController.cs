@@ -3,10 +3,12 @@ using Cinemachine;
 using StarterAssets;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 
 public class ThirdPersonShooterController : MonoBehaviour
 {
     public static ThirdPersonShooterController Instance;
+    private AudioSource HitMarker;
 
     [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
     [SerializeField] private LayerMask aimColliderLayerMask;
@@ -18,7 +20,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     // related to the character's gun's fire-rate and damage.
     public float impactForce = 30f;
     public float damage = 1f;
-    public float range = 100f;
+    public float range = 999f;
     public float fireRate = 15f;
     private float nextTimeToFire = 0f;
 
@@ -56,6 +58,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         thirdPersonController = GetComponent<ThirdPersonController>();
+        HitMarker = GetComponent<AudioSource>();
     }
 
     // update method gets called on every frame of the game, i.e use this method when u want to make stuff happen during the game
@@ -87,7 +90,8 @@ public class ThirdPersonShooterController : MonoBehaviour
 
                 Enemy target = hitTransform.GetComponent<Enemy>();
                 if(target != null){
-                    CallItemOnHit(target);
+                    //CallItemOnHit(target);
+                    HitMarker.Play();
                     target.takeDamage(damage);
                 }
             }
@@ -138,11 +142,11 @@ public class ThirdPersonShooterController : MonoBehaviour
         StartCoroutine(CallItemUpdate());
     }
 
-    public void CallItemOnHit(Enemy enemy){
-        foreach(ItemList i in items){
-            i.item.OnHit(this, enemy, i.count);
-        }
-    }
+    // public void CallItemOnHit(Enemy enemy){
+    //     foreach(ItemList i in items){
+    //         i.item.OnPickupDamage(this);
+    //     }
+    // }
 
     public void CallItemOnJump(){
         foreach(ItemList i in items){
@@ -150,9 +154,13 @@ public class ThirdPersonShooterController : MonoBehaviour
         }   
     }
 
-    public void CallItemOnPickup(){
+    public void CallItemOnPickup(String ItemName){
         foreach(ItemList i in items){
-            i.item.JumpAndSpeed(thirdPersonController);
+            if(ItemName == "Fire Damage Item"){
+                i.item.OnPickupDamage(this);
+            }else{
+                i.item.OnPickup(thirdPersonController);
+            }
         }
     }
 }

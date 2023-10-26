@@ -17,7 +17,12 @@ public class ItemPickup : MonoBehaviour
         if(other.tag == "Player"){
             ThirdPersonShooterController player = other.GetComponent<ThirdPersonShooterController>();
             AddItem(player);
-            player.CallItemOnPickup();
+            if(item.GiveName() == "Speed Boost"){
+                player.CallItemOnPickup(item.GiveName());
+            }
+            if(item.GiveName() == "Fire Damage Item"){
+                player.CallItemOnPickup(item.GiveName());
+            }
             Destroy(this.gameObject);
         }
     }

@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,24 +7,24 @@ public class PauseManager : MonoBehaviour
 {
 
     public bool paused = false;
-    public GameObject pauseMenu;
-    public GameObject FollowCamera;
-
+    public GameObject pauseMenuUI;
+    public GameObject Camera;
     PauseMenu action;
 
-    private void Awake() {
+    private void Awake() 
+    {
         action = new PauseMenu();
     }
 
-    private void OnEnable() {
+    private void OnEnable(){
         action.Enable();
     }
 
-    private void OnDisable() {
+    private void OnDisable(){
         action.Disable();
     }
 
-    private void Start() {
+    private void Start(){
         action.Pause.PauseGame.performed += _ => DeterminePause();
     }
 
@@ -35,32 +37,30 @@ public class PauseManager : MonoBehaviour
     }
 
     public void PauseGame(){
-        pauseMenu.SetActive(true);
-        FollowCamera.SetActive(false);
         Time.timeScale = 0;
-        paused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        pauseMenuUI.SetActive(true);
+        Camera.SetActive(false);
+        paused = true;
     }
 
     public void ResumeGame(){
-        pauseMenu.SetActive(false);
-        FollowCamera.SetActive(true);
         Time.timeScale = 1;
-        paused = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        pauseMenuUI.SetActive(false);
+        Camera.SetActive(true);
+        paused = false;
     }
 
     public void LoadMenu(){
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex-1);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     public void QuitGame(){
-        Debug.Log("Quit!");
+        Debug.Log("Quitting!");
         Application.Quit();
-
     }
-
 }

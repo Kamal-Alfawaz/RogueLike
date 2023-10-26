@@ -12,7 +12,7 @@ public class PlayerHitbox : MonoBehaviour
         if (other.tag == "Enemy"){
             Enemy enemy = other.GetComponent<Enemy>();
             enemy.health -= player.damage;
-            player.CallItemOnHit(enemy);
+            //player.CallItemOnHit(enemy);
         }
         
     }
