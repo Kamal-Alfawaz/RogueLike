@@ -187,3 +187,29 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, sightRange);
     }
 }
+
+
+// public class ProjectileHandler : MonoBehaviour{
+
+//     private int damage;
+//     private string targetTag;
+
+//     public void Initialize(int damage, string targetTag)
+//     {
+//         this.damage = damage;
+//         this.targetTag = targetTag;
+//     }
+
+//     private void OnTriggerEnter(Collider other)
+//     {
+//         if (other.CompareTag(targetTag))
+//         {
+//             ThirdPersonShooterController playerHealth = other.GetComponent<ThirdPersonShooterController>();
+//             if (playerHealth != null)
+//             {
+//                 playerHealth.TakeDamage(damage);
+//             }
+//             Destroy(gameObject); // Destroy the projectile
+//         }
+//     }
+// }

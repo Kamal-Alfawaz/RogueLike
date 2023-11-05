@@ -3,6 +3,7 @@ using Cinemachine;
 using StarterAssets;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.SceneManagement;
 using System;
 
 public class ThirdPersonShooterController : MonoBehaviour
@@ -163,4 +164,23 @@ public class ThirdPersonShooterController : MonoBehaviour
             }
         }
     }
+
+
+    public void TakeDamage(int damageAmount)
+        {
+            health -= damageAmount;
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            // Handle the player's death here
+            Debug.Log("Player has died.");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            // Disable the player object or trigger a death animation, etc.
+        }
 }
+    
