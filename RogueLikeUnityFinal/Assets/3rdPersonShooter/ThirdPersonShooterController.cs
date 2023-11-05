@@ -40,7 +40,9 @@ public class ThirdPersonShooterController : MonoBehaviour
     private float dashCdTimer;
 
     //related to character's Health
+    [SerializeField] HealthBar healthBar;
     public float health = 100f;
+    public float maxHealth = 100f;
 
     public List<ItemList> items = new List<ItemList>();
     public GameObject gameOverCanvas;
@@ -62,6 +64,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         thirdPersonController = GetComponent<ThirdPersonController>();
         HitMarker = GetComponent<AudioSource>();
+        healthBar = GetComponentInChildren<HealthBar>();
     }
 
     // update method gets called on every frame of the game, i.e use this method when u want to make stuff happen during the game
@@ -171,6 +174,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     public void TakeDamage(int damageAmount)
         {
             health -= damageAmount;
+            healthBar.UpdateHealthBar(health, maxHealth);
             if (health <= 0)
             {
                 Die();
