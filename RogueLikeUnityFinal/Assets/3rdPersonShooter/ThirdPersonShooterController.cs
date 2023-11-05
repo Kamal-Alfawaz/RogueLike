@@ -43,6 +43,8 @@ public class ThirdPersonShooterController : MonoBehaviour
     public float health = 100f;
 
     public List<ItemList> items = new List<ItemList>();
+    public GameObject gameOverCanvas;
+
 
     private void Start(){
         StartCoroutine(CallItemUpdate());
@@ -175,12 +177,25 @@ public class ThirdPersonShooterController : MonoBehaviour
             }
         }
 
-        private void Die()
-        {
-            // Handle the player's death here
-            Debug.Log("Player has died.");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            // Disable the player object or trigger a death animation, etc.
-        }
+    private void Die()
+    {
+    // Handle the player's death here
+    Debug.Log("Player has died.");
+    Time.timeScale = 0;
+
+
+    // Enable the gameOver canvas
+    if (gameOverCanvas != null)
+    {
+        gameOverCanvas.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+
+    }
+    else
+    {
+        Debug.LogError("GameOver canvas reference not set in the inspector");
+    }
+    
+}
 }
     
