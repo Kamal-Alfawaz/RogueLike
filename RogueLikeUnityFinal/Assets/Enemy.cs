@@ -108,15 +108,15 @@ public class Enemy : MonoBehaviour
     private void AttackPlayer(){
         // this makes sure the enemy does not move whilst attacking
         agent.SetDestination(transform.position);
-
-        transform.LookAt(player);
-
+        // get the direction vector from the enemy to the player
+        Vector3 direction = player.position - transform.position;
+        // set the enemy's rotation to face the player, but keep the same y-axis rotation
+        transform.rotation = Quaternion.Euler(0, Quaternion.LookRotation(direction, Vector3.up).eulerAngles.y, 0);
         if(!alreadyAttacked){
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            // add force to the bullet in the direction of the player, with some random variation
+            rb.AddForce((direction + Vector3.up * 1f).normalized * 32f + Random.insideUnitSphere * 1f, ForceMode.Impulse);
             Destroy(rb.gameObject, 1);
-
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
@@ -136,16 +136,10 @@ public class Enemy : MonoBehaviour
         if (health <= 0f){
             Die();
         }else{
-            // Activate the health bar
             floatingHealthbar.gameObject.SetActive(true);
-
-            // Check if the enemy is already being attacked
             if (!isAttacked)
             {
-                // Set the isAttacked flag to true
                 isAttacked = true;
-
-                // Start a coroutine that waits for the health bar duration and then deactivates the health bar
                 StartCoroutine(HideHealthBar());
             }
         }
