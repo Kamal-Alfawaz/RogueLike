@@ -370,7 +370,7 @@ MonoBehaviour:
       weight: 5
     - item: {fileID: 1899793871310144716, guid: 6cfe36a4c08521c4c92b27a8da538838,
         type: 3}
-      weight: 4
+      weight: 1
     - item: {fileID: 3493214831625224174, guid: c59fba0e71ef3c94a8900133e63298fe,
         type: 3}
       weight: 1
