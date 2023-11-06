@@ -19,8 +19,16 @@ public class Interactor : MonoBehaviour
         action = new PauseMenu();
     }
 
-    private void Update() {
+    private void Start() {
         action.Interact.InteractButton.performed += _ => Interacting();
+    }
+    
+    private void OnEnable(){
+        action.Enable();
+    }
+
+    private void OnDisable(){
+        action.Disable();
     }
 
     private void Interacting(){

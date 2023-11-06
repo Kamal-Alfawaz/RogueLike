@@ -344,8 +344,8 @@ MonoBehaviour:
   FloatingTextPrefab: {fileID: 939131762150373253, guid: b3cbd6c9d0ad30c4ab15b34f0dcd12ff,
     type: 3}
   healthBarDuration: 10
-  health: 100
-  maxHealth: 100
+  health: 300
+  maxHealth: 300
   damage: 1
   agent: {fileID: 5485950937154077283}
   player: {fileID: 0}
@@ -371,12 +371,12 @@ MonoBehaviour:
       weight: 2
     - item: {fileID: 1899793871310144716, guid: 6cfe36a4c08521c4c92b27a8da538838,
         type: 3}
-      weight: 2
+      weight: 5
     - item: {fileID: 3493214831625224174, guid: c59fba0e71ef3c94a8900133e63298fe,
         type: 3}
       weight: 4
     - item: {fileID: 0}
-      weight: 10
+      weight: 20
 --- !u!195 &5485950937154077283
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -20,6 +20,7 @@ public class gameOver : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
     }
+    
     public void restartGame(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Cursor.lockState = CursorLockMode.Locked;
