@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public int damage = 100;
+    public float damage = 100f;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,8 +15,13 @@ public class Projectile : MonoBehaviour
             {
                 playerHealth.TakeDamage(damage);
             }
-            Destroy(gameObject); // Destroy the projectile after it hits the player
+            else
+            {
+                Debug.LogError("PlayerHealth component not found on the player object.");
+            }
+
+            // Always destroy the projectile, regardless of whether it hit the player or not
+            Destroy(gameObject);
         }
     }
 }
-

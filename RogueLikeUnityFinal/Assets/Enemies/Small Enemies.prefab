@@ -217,7 +217,7 @@ MonoBehaviour:
   currentCamera: {fileID: 5791153071046894418, guid: 36fbc7b5870551e4185c1b3181c587ae,
     type: 3}
   target: {fileID: 233421403742346151}
-  offset: {x: 0, y: 0.7, z: 0}
+  offset: {x: 0, y: 1.7, z: 0}
 --- !u!1 &4590331523389156036
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,7 +351,7 @@ MonoBehaviour:
   player: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 65
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 384
@@ -368,15 +368,15 @@ MonoBehaviour:
     list:
     - item: {fileID: 1550366604830811621, guid: 8ca5a3db19b65614ba945cb408d8300d,
         type: 3}
-      weight: 10
+      weight: 2
     - item: {fileID: 1899793871310144716, guid: 6cfe36a4c08521c4c92b27a8da538838,
         type: 3}
-      weight: 4
+      weight: 2
     - item: {fileID: 3493214831625224174, guid: c59fba0e71ef3c94a8900133e63298fe,
         type: 3}
-      weight: 1
+      weight: 4
     - item: {fileID: 0}
-      weight: 2
+      weight: 10
 --- !u!195 &5485950937154077283
 NavMeshAgent:
   m_ObjectHideFlags: 0

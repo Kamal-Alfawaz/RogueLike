@@ -216,7 +216,7 @@ MonoBehaviour:
   slider: {fileID: 6619691527179574971}
   currentCamera: {fileID: 0}
   target: {fileID: 233421403742346151}
-  offset: {x: 0, y: 5, z: 0}
+  offset: {x: 0, y: 8, z: 0}
 --- !u!1 &4590331523389156036
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,8 +247,8 @@ Transform:
   m_GameObject: {fileID: 4590331523389156036}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3961, y: 5.93, z: 8.780946}
-  m_LocalScale: {x: 4.2000937, y: 4.2000937, z: 4.2000937}
+  m_LocalPosition: {x: -33.6, y: 28.6, z: 150.6}
+  m_LocalScale: {x: 6.464784, y: 6.464784, z: 6.464784}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 385804287538734438}
@@ -340,10 +340,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floatingHealthbar: {fileID: 0}
-  FloatingTextPrefab: {fileID: 0}
+  FloatingTextPrefab: {fileID: 939131762150373253, guid: b3cbd6c9d0ad30c4ab15b34f0dcd12ff,
+    type: 3}
   healthBarDuration: 10
-  health: 5000
-  maxHealth: 5000
+  health: 1000000
+  maxHealth: 1000000
   damage: 1
   agent: {fileID: 5485950937154077283}
   player: {fileID: 0}
@@ -358,8 +359,8 @@ MonoBehaviour:
   timeBetweenAttacks: 0.2
   projectile: {fileID: 3493214831625224174, guid: 70b7b571dd92c524f9ebecc692dcf29e,
     type: 3}
-  sightRange: 20
-  attackRange: 5
+  sightRange: 40
+  attackRange: 15
   playerInSightRange: 0
   playerInAttackRange: 0
   lootTable:

@@ -142,9 +142,9 @@ public class ThirdPersonShooterController : MonoBehaviour
     //Related to the player's items
     IEnumerator CallItemUpdate(){
         foreach(ItemList i in items){
-            i.item.OnHeal(this, i.count);
+            i.item.OnHeal(this, healthBar, i.count);
         }
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(5);
         StartCoroutine(CallItemUpdate());
     }
 
@@ -171,22 +171,28 @@ public class ThirdPersonShooterController : MonoBehaviour
     }
 
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damageAmount)
+    {
+        if (healthBar != null)
         {
             health -= damageAmount;
             healthBar.UpdateHealthBar(health, maxHealth);
-            if (health <= 0)
+            if (health <= 0f)
             {
                 Die();
             }
         }
+        else
+        {
+            Debug.LogError("HealthBar is not assigned.");
+        }
+    }
 
     private void Die()
     {
     // Handle the player's death here
     Debug.Log("Player has died.");
     Time.timeScale = 0;
-
 
     // Enable the gameOver canvas
     if (gameOverCanvas != null)

@@ -9,7 +9,7 @@ public abstract class Item
 
     public abstract string GiveName();
 
-    public virtual void OnHeal(ThirdPersonShooterController player, int count){
+    public virtual void OnHeal(ThirdPersonShooterController player, HealthBar healthBar, int count){
 
     }
 
@@ -33,9 +33,10 @@ public class HealingItem : Item
         return "Healing Item";
     }
 
-    public override void OnHeal(ThirdPersonShooterController player, int count)
+    public override void OnHeal(ThirdPersonShooterController player, HealthBar healthBar, int count)
     {
         player.health += 3 + (2 * count);
+        healthBar.UpdateHealthBar(player.health, player.maxHealth);
     }
 }
 
