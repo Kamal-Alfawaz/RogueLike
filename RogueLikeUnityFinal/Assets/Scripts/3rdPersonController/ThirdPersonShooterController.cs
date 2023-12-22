@@ -17,6 +17,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     // related to the InputSystem, i.e anything input related you refer to these variables
     private StarterAssetsInputs starterAssetsInputs;
     private ThirdPersonController thirdPersonController;
+    private CharacterController characterController;
 
     // related to the character's gun's fire-rate and damage.
     public float impactForce = 30f;
@@ -28,7 +29,6 @@ public class ThirdPersonShooterController : MonoBehaviour
     [Header("References")]
     public Transform orientation;
     public Transform playerCam;
-    private Rigidbody rb;
 
     [Header("Dashing")]
     public float dashForce;
@@ -44,27 +44,22 @@ public class ThirdPersonShooterController : MonoBehaviour
     public float health = 100f;
     public float maxHealth = 100f;
 
+    [Header("ItemList")]
     public List<ItemList> items = new List<ItemList>();
     public GameObject gameOverCanvas;
 
 
     private void Start(){
         StartCoroutine(CallItemUpdate());
-        // if(Instance != null){
-        //     Destroy(this.gameObject);
-        //     return;
-        // }
-        // Instance = this;
-        // GameObject.DontDestroyOnLoad(this.gameObject);
     }
 
     // Awake Method only gets called as soon as the scene starts, i.e when the game/level starts
     private void Awake(){
-        rb = GetComponent<Rigidbody>();
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         thirdPersonController = GetComponent<ThirdPersonController>();
         HitMarker = GetComponent<AudioSource>();
         healthBar = GetComponentInChildren<HealthBar>();
+        characterController = GetComponent<CharacterController>();
     }
 
     // update method gets called on every frame of the game, i.e use this method when u want to make stuff happen during the game
@@ -122,21 +117,32 @@ public class ThirdPersonShooterController : MonoBehaviour
         }
 
         if(starterAssetsInputs.dash){
-            Debug.Log("Dashing");
-            Dash();
+            StartCoroutine(Dash());
             starterAssetsInputs.dash = false;
+        }
+
+        if(dashCdTimer > 0){
+            dashCdTimer -= Time.deltaTime;
         }
     }
 
-    private void Dash(){
-        Vector3 forceToApply = orientation.forward * dashForce + orientation.up * dashUpwardForce;
+    private IEnumerator Dash(){
+        if(dashCdTimer > 0){
+            yield break;
+        }else dashCdTimer = dashCd;
+        Debug.Log("Dashing");
 
-        rb.AddForce(forceToApply, ForceMode.Impulse);
-        //Invoke(nameof(ResetDash), dashDuration);
-    }
+        Vector3 cameraForward = Camera.main.transform.forward;
+        cameraForward.y = 0;
+        cameraForward.Normalize();
+        
+        Vector3 forceToApply = cameraForward * dashForce;
+        float dashEndTime = Time.time + dashDuration;
 
-    private void ResetDash(){
-
+        while (Time.time < dashEndTime) {
+            characterController.Move(forceToApply * Time.deltaTime);
+            yield return null;
+        }
     }
     
     //Related to the player's items

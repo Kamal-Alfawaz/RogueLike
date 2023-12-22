@@ -19,7 +19,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"F:/UnityProject/TESTTIME;F:/UnityProject/TESTTIME/game/TemplateData;F:/UnityProject/test/RogueLike/Game;;;;;;;\"}"
+                "value": "{\"m_Value\":\"F:/UnityProject/DeleteLater;F:/UnityProject/TESTTIME;F:/UnityProject/TESTTIME/game/TemplateData;F:/UnityProject/test/RogueLike/Game;;;;;;\"}"
             }
         ]
     }
