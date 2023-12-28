@@ -34,11 +34,10 @@ public class ThirdPersonShooterController : MonoBehaviour
     public float dashForce;
     public float dashUpwardForce;
     public float dashDuration;
-
-    [Header("Cooldown")]
     public float dashCd;
     private float dashCdTimer;
 
+    [Header("Health")]
     //related to character's Health
     [SerializeField] HealthBar healthBar;
     public float health = 100f;
@@ -115,6 +114,12 @@ public class ThirdPersonShooterController : MonoBehaviour
             Debug.Log("throwing grenade");
             starterAssetsInputs.grenade = false;
         }
+
+        // if(starterAssetsInputs.Interact){
+        //     if (Physics.Raycast(ray, out RaycastHit hit, 1f)){
+        //         Debug.Log("Interacted!");
+        //     }
+        // }
 
         if(starterAssetsInputs.dash){
             StartCoroutine(Dash());
