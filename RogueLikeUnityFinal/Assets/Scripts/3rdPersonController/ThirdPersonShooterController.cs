@@ -8,7 +8,6 @@ using System;
 
 public class ThirdPersonShooterController : MonoBehaviour
 {
-    public static ThirdPersonShooterController Instance;
     private AudioSource HitMarker;
 
     [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
