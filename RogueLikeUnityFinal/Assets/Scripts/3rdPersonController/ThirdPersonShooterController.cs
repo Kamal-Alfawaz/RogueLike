@@ -23,6 +23,10 @@ public class ThirdPersonShooterController : MonoBehaviour
     public float damage = 1f;
     public float range = 999f;
     public float fireRate = 15f;
+
+    public int charmCount = 0;
+
+    public float attackSpeedMultiplier = 1.0f;
     private float nextTimeToFire = 0f;
 
     [Header("References")]
@@ -215,7 +219,15 @@ public class ThirdPersonShooterController : MonoBehaviour
     {
         Debug.LogError("GameOver canvas reference not set in the inspector");
     }
-    
-}
+    }
+
+    public void addCharm(){
+        charmCount++;
+        updateAttackSpeed();
+    }
+
+    public void updateAttackSpeed(){
+        attackSpeedMultiplier = 1.0f + (charmCount * 0.15f);
+    }
 }
     
