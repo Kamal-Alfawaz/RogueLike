@@ -59,7 +59,7 @@ public class FireRateItem : Item
     }
 
     public override void OnPickupDamage(ThirdPersonShooterController player){
-        player.fireRate -= 0.1f;
+        player.fireRate += 1f;
     }
 }
 
