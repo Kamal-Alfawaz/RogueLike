@@ -87,5 +87,19 @@ public class SpeedBoost : Item{
         player.MoveSpeed += 1;
         player.SprintSpeed += 1;
     }
-} 
+}
+
+public class RelativeHeal : Item
+{
+    public override string GiveName()
+    {
+        return "Relative Healing Item";
+    }
+
+    public override void OnHeal(ThirdPersonShooterController player, HealthBar healthBar, int count)
+    {
+        player.health += 3 + (2 * count);
+        healthBar.UpdateHealthBar(player.health, player.maxHealth);
+    }
+}
 
