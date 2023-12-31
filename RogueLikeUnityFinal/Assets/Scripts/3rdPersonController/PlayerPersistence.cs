@@ -1,18 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerPersistence : MonoBehaviour
+public class PersistObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static PersistObject instance = null;
+
+    private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        
+        if (scene.name == "MainMenu") // replace "MainMenu" with your main menu scene name
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            // Find the spawn point and move the player to it
+            GameObject spawnPoint = GameObject.Find("PlayerSpawnPoint");
+            if (spawnPoint != null)
+            {
+                this.transform.position = spawnPoint.transform.position;
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

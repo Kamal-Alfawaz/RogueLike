@@ -24,9 +24,7 @@ public abstract class Item
     public virtual void OnPickup(ThirdPersonController player){
         
     }
-    public virtual void OnPickupRate(ThirdPersonController player){
-        
-    }
+
 }
 
 public class HealingItem : Item
@@ -60,8 +58,8 @@ public class FireRateItem : Item
         return "Fire Rate Item";
     }
 
-    public override void OnPickupRate(ThirdPersonShooterController player){
-        player.fireRate += 1;
+    public override void OnPickupDamage(ThirdPersonShooterController player){
+        player.fireRate -= 0.1f;
     }
 }
 
