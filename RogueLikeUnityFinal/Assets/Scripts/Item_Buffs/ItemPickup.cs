@@ -46,7 +46,9 @@ public class ItemPickup : MonoBehaviour
             case Items.SpeedBoost:
                 return new SpeedBoost();
             case Items.FireRateItem:
-                return new SpeedBoost();
+                return new FireRateItem();
+            case Items.RelativeHealItem:
+                return new RelativeHeal();
             default:
                 return new HealingItem();
         }
@@ -57,5 +59,6 @@ public enum Items{
     SpeedBoost,
     HealingItem,
     FireDamageItem,
-    FireRateItem
+    FireRateItem,
+    RelativeHealItem
 }
