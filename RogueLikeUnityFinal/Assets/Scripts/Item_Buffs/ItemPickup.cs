@@ -14,15 +14,11 @@ public class ItemPickup : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other){
-        if(other.tag == "Player"){
+        if(other.CompareTag("Player"))
+        {
             ThirdPersonShooterController player = other.GetComponent<ThirdPersonShooterController>();
             AddItem(player);
-            if(item.GiveName() == "Speed Boost"){
-                player.CallItemOnPickup(item.GiveName());
-            }
-            if(item.GiveName() == "Fire Damage Item"){
-                player.CallItemOnPickup(item.GiveName());
-            }
+            player.CallItemOnPickup(item);
             Destroy(this.gameObject);
         }
     }
@@ -47,8 +43,11 @@ public class ItemPickup : MonoBehaviour
                 return new SpeedBoost();
             case Items.FireRateItem:
                 return new FireRateItem();
+<<<<<<< Updated upstream
             case Items.RelativeHealItem:
                 return new RelativeHeal();
+=======
+>>>>>>> Stashed changes
             default:
                 return new HealingItem();
         }

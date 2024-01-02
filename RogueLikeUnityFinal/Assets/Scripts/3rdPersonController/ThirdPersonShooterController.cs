@@ -174,11 +174,12 @@ public class ThirdPersonShooterController : MonoBehaviour
         }   
     }
 
-    public void CallItemOnPickup(String ItemName){
+    public void CallItemOnPickup(Item pickedUpItem){
         foreach(ItemList i in items){
-            if(ItemName == "Fire Damage Item"){
+            if (i.item.GiveName() == pickedUpItem.GiveName()){
                 i.item.OnPickupDamage(this);
-            }else{
+            }
+            if(i.item.GiveName() == pickedUpItem.GiveName()){
                 i.item.OnPickup(thirdPersonController);
             }
         }
