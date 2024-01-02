@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Outlines
   m_EditorClassIdentifier: 
   m_Active: 1
-  passMaterial: {fileID: 2100000, guid: 78a08787ca30045abb69f6f7dd878e09, type: 2}
-  injectionPoint: 600
-  requirements: 4
-  passIndex: 0
+  passMaterial: {fileID: 2100000, guid: 67c7be3ff0354744897d75a788ff73c5, type: 2}
+  injectionPoint: 450
+  requirements: 6
+  passIndex: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

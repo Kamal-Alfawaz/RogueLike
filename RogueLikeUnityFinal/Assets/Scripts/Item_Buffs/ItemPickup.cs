@@ -43,11 +43,8 @@ public class ItemPickup : MonoBehaviour
                 return new SpeedBoost();
             case Items.FireRateItem:
                 return new FireRateItem();
-<<<<<<< Updated upstream
             case Items.RelativeHealItem:
                 return new RelativeHeal();
-=======
->>>>>>> Stashed changes
             default:
                 return new HealingItem();
         }

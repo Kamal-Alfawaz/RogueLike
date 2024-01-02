@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OutlineWhite
+  m_Name: OutlineMat
   m_Shader: {fileID: -6465566751694194690, guid: ce66389597523014591cbf1c0418056f,
     type: 3}
   m_Parent: {fileID: 0}
@@ -39,9 +39,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Colour_Threshold: 6.25
-    - _Normal_Threshold: 0.7
+    - _Colour_Threshold: 1.2
+    - _Normal_Threshold: 0.77
     - _OVERLAY: 1
     m_Colors:
-    - _Outline_Colour: {r: 1, g: 1, b: 1, a: 1}
+    - _Outline_Colour: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
