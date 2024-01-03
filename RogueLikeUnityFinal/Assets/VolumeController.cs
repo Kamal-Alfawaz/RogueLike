@@ -5,18 +5,18 @@ using UnityEngine.UI;
 
 public class VolumeController : MonoBehaviour
 {
-    [SerializeField] Slider volumeSlider;
+   [SerializeField] Slider volumeSlider;
     // Start is called before the first frame update
     void Start()
     {
-        if (!PlayerPrefs.HasKey("Volume"))
+        if (volumeSlider != null && PlayerPrefs.HasKey("Volume"))
         {
-            PlayerPrefs.SetFloat("Volume", 1);
+           
             LoadVolume();
         }
         else
         {
-            LoadVolume();
+            volumeSlider.value = 1;
         }
   
     }
@@ -24,11 +24,13 @@ public class VolumeController : MonoBehaviour
     public void ChangeVolume()
     {
         AudioListener.volume = volumeSlider.value;
+        PlayerPrefs.SetFloat("Volume", volumeSlider.value);
     }
 
     private void LoadVolume()
     {
-        volumeSlider.value = PlayerPrefs.GetFloat("Volume");
+        float volume = PlayerPrefs.GetFloat("Volume");
+        volumeSlider.value = volume;
     }
 
     private void SaveVolume()
@@ -36,4 +38,3 @@ public class VolumeController : MonoBehaviour
         PlayerPrefs.SetFloat("Volume", volumeSlider.value);
     }
 }
-
