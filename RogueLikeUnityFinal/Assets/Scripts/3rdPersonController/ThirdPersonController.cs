@@ -214,7 +214,7 @@ namespace StarterAssets
                 
                 //Don't multiply mouse input by Time.deltaTime;
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
-                LoadSensitivity();
+                
                 LookSensitivity = new Vector2(slider.value, slider.value);
                 
                 _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier * LookSensitivity.x;
