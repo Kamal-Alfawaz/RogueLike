@@ -50,6 +50,8 @@ public class ThirdPersonShooterController : MonoBehaviour
     public List<ItemList> items = new List<ItemList>();
     public GameObject gameOverCanvas;
 
+    public event Action OnInventoryChanged;
+
 
     private void Start(){
         StartCoroutine(CallItemUpdate());
@@ -93,7 +95,6 @@ public class ThirdPersonShooterController : MonoBehaviour
 
                 Enemy target = hitTransform.GetComponent<Enemy>();
                 if(target != null){
-                    //CallItemOnHit(target);
                     HitMarker.Play();
                     target.takeDamage(damage);
                 }
@@ -132,6 +133,11 @@ public class ThirdPersonShooterController : MonoBehaviour
         if(dashCdTimer > 0){
             dashCdTimer -= Time.deltaTime;
         }
+    }
+
+    public void InventoryChanged()
+    {
+        OnInventoryChanged?.Invoke();
     }
 
     private IEnumerator Dash(){

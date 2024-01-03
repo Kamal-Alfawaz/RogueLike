@@ -27,10 +27,12 @@ public class ItemPickup : MonoBehaviour
         foreach(ItemList i in player.items){
             if (i.name == item.GiveName()){
                 i.count += 1;
+                player.InventoryChanged();
                 return;
             }
         }
         player.items.Add(new ItemList(item, item.GiveName(), 1));
+        player.InventoryChanged();
     }
 
     public Item AssignItem(Items itemToAssign){
