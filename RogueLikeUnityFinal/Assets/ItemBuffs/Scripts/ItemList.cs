@@ -8,11 +8,13 @@ public class ItemList
     public Item item;
     public string name;
     public int count;
+    public Sprite sprite;
 
-    public ItemList(Item newItem, string newName, int newCount){
+    public ItemList(Item newItem, string newName, int newCount, Sprite newSprite){
         item = newItem;
         name = newName;
         count = newCount;
+        sprite = newSprite;
     }
 
 }

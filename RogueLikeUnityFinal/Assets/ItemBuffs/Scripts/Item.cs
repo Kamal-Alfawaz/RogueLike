@@ -6,6 +6,7 @@ using UnityEngine;
 
 public abstract class Item
 {
+    public abstract Sprite GetSprite();
 
     public abstract string GiveName();
 
@@ -29,6 +30,11 @@ public abstract class Item
 
 public class HealingItem : Item
 {
+    public override Sprite GetSprite()
+    {
+        return (Sprite)Resources.Load("ability images/health", typeof(Sprite));
+    }
+
     public override string GiveName()
     {
         return "Healing Item";
@@ -43,6 +49,12 @@ public class HealingItem : Item
 
 public class FireDamageItem : Item
 {
+
+    public override Sprite GetSprite()
+    {
+        return (Sprite)Resources.Load("ability images/damage", typeof(Sprite));
+    }
+
     public override string GiveName(){
         return "Fire Damage Item";
     }
@@ -54,6 +66,12 @@ public class FireDamageItem : Item
 
 public class FireRateItem : Item
 {
+
+    public override Sprite GetSprite()
+    {
+        return (Sprite)Resources.Load("ability images/fireRate", typeof(Sprite));
+    }
+
     public override string GiveName(){
         return "Fire Rate Item";
     }
@@ -67,6 +85,11 @@ public class HealingArea : Item{
 
     GameObject effect;
 
+    public override Sprite GetSprite()
+    {
+        return (Sprite)Resources.Load("ability images/healingArea", typeof(Sprite));
+    }
+
     public override string GiveName(){
         return "Healing Area";
     }
@@ -78,6 +101,11 @@ public class HealingArea : Item{
 }
 
 public class SpeedBoost : Item{
+
+    public override Sprite GetSprite()
+    {
+        return (Sprite)Resources.Load("ability images/speed", typeof(Sprite));
+    }
     
     public override string GiveName(){
         return "Speed Boost";
@@ -89,17 +117,17 @@ public class SpeedBoost : Item{
     }
 }
 
-public class RelativeHeal : Item
-{
-    public override string GiveName()
-    {
-        return "Relative Healing Item";
-    }
+// public class RelativeHeal : Item
+// {
+//     public override string GiveName()
+//     {
+//         return "Relative Healing Item";
+//     }
 
-    public override void OnHeal(ThirdPersonShooterController player, HealthBar healthBar, int count)
-    {
-        player.health += 3 + (2 * count);
-        healthBar.UpdateHealthBar(player.health, player.maxHealth);
-    }
-}
+//     public override void OnHeal(ThirdPersonShooterController player, HealthBar healthBar, int count)
+//     {
+//         player.health += 3 + (2 * count);
+//         healthBar.UpdateHealthBar(player.health, player.maxHealth);
+//     }
+// }
 

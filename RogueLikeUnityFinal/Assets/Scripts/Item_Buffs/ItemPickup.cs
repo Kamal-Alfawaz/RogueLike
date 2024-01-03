@@ -31,7 +31,7 @@ public class ItemPickup : MonoBehaviour
                 return;
             }
         }
-        player.items.Add(new ItemList(item, item.GiveName(), 1));
+        player.items.Add(new ItemList(item, item.GiveName(), 1, item.GetSprite()));
         player.InventoryChanged();
     }
 
@@ -45,8 +45,8 @@ public class ItemPickup : MonoBehaviour
                 return new SpeedBoost();
             case Items.FireRateItem:
                 return new FireRateItem();
-            case Items.RelativeHealItem:
-                return new RelativeHeal();
+            // case Items.RelativeHealItem:
+            //     return new RelativeHeal();
             default:
                 return new HealingItem();
         }
