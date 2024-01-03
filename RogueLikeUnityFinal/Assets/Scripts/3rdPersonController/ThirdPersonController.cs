@@ -21,10 +21,6 @@ namespace StarterAssets
         public Vector2 LookSensitivity;
       
 
-        public Slider slider;
-
-
-
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
@@ -146,7 +142,6 @@ namespace StarterAssets
 
         private void Start()
         {
-             LoadSensitivity(); // Load sensitivity when the game starts
             
    
 
@@ -214,12 +209,11 @@ namespace StarterAssets
                 
                 //Don't multiply mouse input by Time.deltaTime;
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
-                
-                LookSensitivity = new Vector2(slider.value, slider.value);
+                float SavedSensetivity = PlayerPrefs.GetFloat("Sensetivity");
+                LookSensitivity = new Vector2(SavedSensetivity, SavedSensetivity);
                 
                 _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier * LookSensitivity.x;
                 _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier * LookSensitivity.y;
-                SaveSensitivity(); // Save sensitivity when the mouse moves
 
             }
 
@@ -232,22 +226,7 @@ namespace StarterAssets
                 _cinemachineTargetYaw, 0.0f);
         }
 
-            private void SaveSensitivity()
-        {
-            PlayerPrefs.SetFloat("Sensitivity", slider.value);
-            PlayerPrefs.Save();
-        }
 
-        private void LoadSensitivity()
-        {
-            if (PlayerPrefs.HasKey("Sensitivity"))
-            {
-                float sensitivityValue = PlayerPrefs.GetFloat("Sensitivity");
-                slider.value = sensitivityValue;
-                LookSensitivity = new Vector2(sensitivityValue, sensitivityValue);
-
-            }
-        }
 
 
         private void Move()
