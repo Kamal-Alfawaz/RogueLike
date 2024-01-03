@@ -13,7 +13,7 @@ public class OptionsData : MonoBehaviour
         LoadSensitivity();
     }
 
-    private void LoadSensitivity()
+    public void LoadSensitivity()
     {
         if (PlayerPrefs.HasKey("Sensitivity"))
         {
