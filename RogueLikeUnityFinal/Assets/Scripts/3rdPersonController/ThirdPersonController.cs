@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -13,7 +14,17 @@ namespace StarterAssets
     [RequireComponent(typeof(PlayerInput))]
 #endif
     public class ThirdPersonController : MonoBehaviour
-    {
+    {   
+        [Header("Camera Sensitivity")]
+        [Tooltip("Adjusts the sensitivity of mouse input")]
+
+        public Vector2 LookSensitivity;
+      
+
+        public Slider slider;
+
+
+
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
@@ -135,6 +146,10 @@ namespace StarterAssets
 
         private void Start()
         {
+             LoadSensitivity(); // Load sensitivity when the game starts
+            
+   
+
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             
             _hasAnimator = TryGetComponent(out _animator);
@@ -195,12 +210,17 @@ namespace StarterAssets
         {
             // if there is an input and camera position is not fixed
             if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
-            {
+            {   
+                
                 //Don't multiply mouse input by Time.deltaTime;
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
+                LoadSensitivity();
+                LookSensitivity = new Vector2(slider.value, slider.value);
+                
+                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier * LookSensitivity.x;
+                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier * LookSensitivity.y;
+                SaveSensitivity(); // Save sensitivity when the mouse moves
 
-                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
             }
 
             // clamp our rotations so our values are limited 360 degrees
@@ -211,6 +231,24 @@ namespace StarterAssets
             CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
                 _cinemachineTargetYaw, 0.0f);
         }
+
+            private void SaveSensitivity()
+        {
+            PlayerPrefs.SetFloat("Sensitivity", slider.value);
+            PlayerPrefs.Save();
+        }
+
+        private void LoadSensitivity()
+        {
+            if (PlayerPrefs.HasKey("Sensitivity"))
+            {
+                float sensitivityValue = PlayerPrefs.GetFloat("Sensitivity");
+                slider.value = sensitivityValue;
+                LookSensitivity = new Vector2(sensitivityValue, sensitivityValue);
+
+            }
+        }
+
 
         private void Move()
         {
