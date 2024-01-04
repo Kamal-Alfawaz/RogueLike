@@ -53,6 +53,17 @@ public class ThirdPersonShooterController : MonoBehaviour
     public event Action OnInventoryChanged;
 
 
+    public GameObject bulletPrefab;
+    public GameObject explosionEffect; // Assign an explosion effect prefab in the inspector
+
+    private bool explosiveBulletsEnabled = false;
+
+    public void EnableExplosiveBullets()
+    {
+        explosiveBulletsEnabled = true;
+    }
+
+
     private void Start(){
         StartCoroutine(CallItemUpdate());
     }
