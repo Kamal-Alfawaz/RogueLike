@@ -58,6 +58,24 @@ public class RandomSpawner : MonoBehaviour
         // Initialize the timers
         difficultyTimer = difficultyInterval;
         spawnTimer = baseSpawnRate;
+
+        // Initialize the spawnPoints array with the correct size
+        spawnPoints = new Transform[11];
+
+        // Assign each spawn point to the spawnPoints array
+        for (int i = 0; i < 11; i++)
+        {
+            string spawnPointName = i == 0 ? "SpawnPoint" : $"SpawnPoint ({i})";
+            GameObject spawnPointObject = GameObject.Find(spawnPointName);
+            if (spawnPointObject != null)
+            {
+                spawnPoints[i] = spawnPointObject.transform;
+            }
+            else
+            {
+                Debug.LogError($"Spawn point {spawnPointName} not found");
+            }
+        }
     }
 
     void Update()

@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDrop: 4
+  itemDisplayPrefab: {fileID: 0}
+  itemDisplayContainer: {fileID: 0}
 --- !u!33 &5224829759690115483
 MeshFilter:
   m_ObjectHideFlags: 0

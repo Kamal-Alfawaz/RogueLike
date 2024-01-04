@@ -3,41 +3,36 @@ using UnityEngine.SceneManagement;
 
 public class PersistObject : MonoBehaviour
 {
-    private static PersistObject instance = null;
+    private static PersistObject Instance = null;
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance != null)
         {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.name == "MainMenu") // replace "MainMenu" with your main menu scene name
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            // Find the spawn point and move the player to it
-            GameObject spawnPoint = GameObject.Find("PlayerSpawnPoint");
-            if (spawnPoint != null)
-            {
-                this.transform.position = spawnPoint.transform.position;
-            }
-        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (ShouldDestroyOnScene(scene.name))
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private bool ShouldDestroyOnScene(string sceneName)
+    {
+        // Add other scene names if needed
+        return sceneName == "MainMenu";
     }
 }

@@ -17,8 +17,21 @@ public class EnemyBrain_Stupid : MonoBehaviour
         enemyReferences = GetComponent<EnemyReferences>();
     }
 
+    private IEnumerator UpdatePathWithDelay()
+    {
+        while (true)
+        {
+            if (target != null)
+            {
+                enemyReferences.navMeshAgent.SetDestination(target.position);
+            }
+            yield return new WaitForSeconds(enemyReferences.pathUpdateDelay);
+        }
+    }
+
     private void Start() {
         shootingDistance = enemyReferences.navMeshAgent.stoppingDistance;
+        StartCoroutine(UpdatePathWithDelay());
     }
 
     private void Update() {
@@ -27,8 +40,6 @@ public class EnemyBrain_Stupid : MonoBehaviour
 
             if (inRange){
                 LookAtTarget();
-            }else{
-                UpdatePath();
             }
 
             enemyReferences.animator.SetBool("Shooting", inRange);
