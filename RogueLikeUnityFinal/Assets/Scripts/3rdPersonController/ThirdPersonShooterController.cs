@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
+using System.Threading;
 
 public class ThirdPersonShooterController : MonoBehaviour
 {
@@ -108,6 +109,7 @@ public class ThirdPersonShooterController : MonoBehaviour
                 if(target != null){
                     HitMarker.Play();
                     target.takeDamage(damage);
+                    ApplyLifeSteal(healthBar);
                 }
             }
         }else{
@@ -246,6 +248,33 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     public void updateAttackSpeed(){
         attackSpeedMultiplier = 1.0f + (charmCount * 0.15f);
+    }
+
+    public void StartDoubleDamageCoroutine() {
+        StartCoroutine(TemporarilyDoubleDamage());
+    }
+    private IEnumerator TemporarilyDoubleDamage() {
+        damage *= 2;
+        yield return new WaitForSeconds(10);
+        damage /= 2;
+    }
+
+    public void ApplyLifeSteal(HealthBar healthBar)
+   {
+
+    float healAmount = damage * 0.02f;
+
+    // Add this to the player's health
+    health += healAmount;
+
+    // Ensure health does not exceed maximum health
+    if (health > maxHealth)
+    {
+        health = maxHealth;
+    }
+
+    // Update the health bar
+    healthBar.UpdateHealthBar(health, maxHealth);
     }
 }
     

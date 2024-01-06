@@ -1,3 +1,4 @@
+using System.Collections;
 using StarterAssets;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
@@ -24,6 +25,10 @@ public abstract class Item
 
     public virtual void OnPickup(ThirdPersonController player){
         
+    }
+
+    public virtual void OnLifeSteal(ThirdPersonShooterController player, HealthBar healthBar, int count){
+
     }
 
 }
@@ -117,17 +122,41 @@ public class SpeedBoost : Item{
     }
 }
 
-// public class RelativeHeal : Item
-// {
-//     public override string GiveName()
-//     {
-//         return "Relative Healing Item";
-//     }
+public class DoubleDamageItem: Item{
+    public override Sprite GetSprite()
+    {
+        return (Sprite)Resources.Load("ability images/doubleDamage", typeof(Sprite));
+    }
 
-//     public override void OnHeal(ThirdPersonShooterController player, HealthBar healthBar, int count)
-//     {
-//         player.health += 3 + (2 * count);
-//         healthBar.UpdateHealthBar(player.health, player.maxHealth);
-//     }
-// }
+    public override string GiveName(){
+        return "Double Damage Item";
+    }
+
+    public override void OnPickupDamage(ThirdPersonShooterController player) {
+        player.StartDoubleDamageCoroutine();
+    }
+
+}
+
+public class LifeStealItem : Item
+{
+    public override Sprite GetSprite()
+    {
+        return (Sprite)Resources.Load("ability images/lifeSteal", typeof(Sprite));
+    }
+
+    public override string GiveName()
+    {
+        return "Life Steal Item";
+    }
+
+    // Method to apply life-steal effect
+
+    public override void OnLifeSteal(ThirdPersonShooterController player, HealthBar healthBar, int count){
+        player.ApplyLifeSteal(healthBar);
+
+    }
+}
+
+
 

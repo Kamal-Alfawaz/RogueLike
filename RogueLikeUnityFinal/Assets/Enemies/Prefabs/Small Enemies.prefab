@@ -346,7 +346,7 @@ MonoBehaviour:
   healthBarDuration: 10
   health: 300
   maxHealth: 300
-  damage: 1
+  damage: 0
   agent: {fileID: 5485950937154077283}
   player: {fileID: 0}
   whatIsGround:
@@ -382,6 +382,12 @@ MonoBehaviour:
     - item: {fileID: 2953538907098955326, guid: d08345620abb64bb5a3274674781b1ac,
         type: 3}
       weight: 5
+    - item: {fileID: 1550366604830811621, guid: 82c0a47456a3b4250a9d359ce87db803,
+        type: 3}
+      weight: 5
+    - item: {fileID: 1550366604830811621, guid: e0f31134efc944124a889fd638eac846,
+        type: 3}
+      weight: 150
 --- !u!195 &5485950937154077283
 NavMeshAgent:
   m_ObjectHideFlags: 0
