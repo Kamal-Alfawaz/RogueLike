@@ -18,13 +18,13 @@ public class gameOver : MonoBehaviour
 
     public void QuitGame()
     {
-        SceneManager.LoadScene("mainMenu");
+        Debug.Log("Quitting game...");
+        Application.Quit();
     }
 
     public void restartGame(){
         GameIsOver = false;
-        SceneManager.LoadScene("Stage_1");
-        Cursor.lockState = CursorLockMode.Locked;
+        SceneManager.LoadScene("mainMenu");
         Time.timeScale = 1;
     }
 }
