@@ -68,9 +68,9 @@ public class ThirdPersonShooterController : MonoBehaviour
     }
 
 
-    private void Start(){
-        StartCoroutine(CallItemUpdate());
-    }
+    // private void Start(){
+    //     StartCoroutine(CallItemUpdate());
+    // }
 
     // Awake Method only gets called as soon as the scene starts, i.e when the game/level starts
     private void Awake(){
@@ -112,7 +112,8 @@ public class ThirdPersonShooterController : MonoBehaviour
                 if(target != null){
                     HitMarker.Play();
                     target.takeDamage(damage);
-                    ApplyLifeSteal(healthBar);
+                    CallItemOnDamage();
+                    // ApplyLifeSteal(healthBar);
                 }
             }
         }else{
@@ -134,12 +135,6 @@ public class ThirdPersonShooterController : MonoBehaviour
             Debug.Log("throwing grenade");
             starterAssetsInputs.grenade = false;
         }
-
-        // if(starterAssetsInputs.Interact){
-        //     if (Physics.Raycast(ray, out RaycastHit hit, 1f)){
-        //         Debug.Log("Interacted!");
-        //     }
-        // }
 
         if(starterAssetsInputs.dash){
             StartCoroutine(Dash());
@@ -175,20 +170,20 @@ public class ThirdPersonShooterController : MonoBehaviour
         }
     }
     
-    //Related to the player's items
-    IEnumerator CallItemUpdate(){
-        foreach(ItemList i in items){
-            i.item.OnHeal(this, healthBar, i.count);
-        }
-        yield return new WaitForSeconds(5);
-        StartCoroutine(CallItemUpdate());
-    }
-
-    // public void CallItemOnHit(Enemy enemy){
+    // //Related to the player's items
+    // IEnumerator CallItemUpdate(){
     //     foreach(ItemList i in items){
-    //         i.item.OnPickupDamage(this);
+    //         i.item.OnHeal(this, healthBar, i.count);
     //     }
+    //     yield return new WaitForSeconds(5);
+    //     StartCoroutine(CallItemUpdate());
     // }
+
+    public void CallItemOnDamage(){
+        foreach(ItemList i in items){
+            i.item.OnDamage(this, healthBar, i.count);
+        }
+    }
 
     public void CallItemOnJump(){
         foreach(ItemList i in items){
@@ -256,6 +251,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     public void StartDoubleDamageCoroutine() {
         StartCoroutine(TemporarilyDoubleDamage());
     }
+    
     private IEnumerator TemporarilyDoubleDamage() {
         System.Random rnd = new System.Random();
         Num = rnd.Next(1,10);
@@ -267,24 +263,6 @@ public class ThirdPersonShooterController : MonoBehaviour
         // damage *= 2;
         // yield return new WaitForSeconds(10);
         // damage /= 2;
-    }
-
-    public void ApplyLifeSteal(HealthBar healthBar)
-   {
-
-    float healAmount = damage * 0.02f;
-
-    // Add this to the player's health
-    health += healAmount;
-
-    // Ensure health does not exceed maximum health
-    if (health > maxHealth)
-    {
-        health = maxHealth;
-    }
-
-    // Update the health bar
-    healthBar.UpdateHealthBar(health, maxHealth);
     }
 }
     

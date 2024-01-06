@@ -18,11 +18,12 @@ public class gameOver : MonoBehaviour
 
     public void QuitGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
+        SceneManager.LoadScene("mainMenu");
     }
-    
+
     public void restartGame(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameIsOver = false;
+        SceneManager.LoadScene("Stage_1");
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
     }

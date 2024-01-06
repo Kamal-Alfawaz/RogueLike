@@ -27,7 +27,7 @@ public abstract class Item
         
     }
 
-    public virtual void OnLifeSteal(ThirdPersonShooterController player, HealthBar healthBar, int count){
+    public virtual void OnDamage(ThirdPersonShooterController player, HealthBar healthBar, int count){
 
     }
 
@@ -47,8 +47,13 @@ public class HealingItem : Item
 
     public override void OnHeal(ThirdPersonShooterController player, HealthBar healthBar, int count)
     {
-        player.health += 3 + (2 * count);
-        healthBar.UpdateHealthBar(player.health, player.maxHealth);
+        if (player.health > player.maxHealth)
+        {
+            player.health = player.maxHealth;
+        }else{
+            player.health += 3 + (2 * count);
+            healthBar.UpdateHealthBar(player.health, player.maxHealth);
+        }
     }
 }
 
@@ -150,11 +155,20 @@ public class LifeStealItem : Item
         return "Life Steal Item";
     }
 
-    // Method to apply life-steal effect
+    public override void OnDamage(ThirdPersonShooterController player, HealthBar healthBar, int count){
+        float healAmount = player.damage * (count * 0.02f);
 
-    public override void OnLifeSteal(ThirdPersonShooterController player, HealthBar healthBar, int count){
-        player.ApplyLifeSteal(healthBar);
+        if (player.health == player.maxHealth)
+        {
+            return;
+        }
 
+        else if (player.health + healAmount > player.maxHealth)
+        {
+            healAmount = player.maxHealth - player.health;
+        }
+        player.health += healAmount;
+        healthBar.UpdateHealthBar(player.health, player.maxHealth);
     }
 }
 
