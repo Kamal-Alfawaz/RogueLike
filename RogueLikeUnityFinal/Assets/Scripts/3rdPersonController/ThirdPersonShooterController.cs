@@ -6,6 +6,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
 using System.Threading;
+using System.Globalization;
 
 public class ThirdPersonShooterController : MonoBehaviour
 {
@@ -58,6 +59,8 @@ public class ThirdPersonShooterController : MonoBehaviour
     public GameObject explosionEffect; // Assign an explosion effect prefab in the inspector
 
     private bool explosiveBulletsEnabled = false;
+
+    public int Num { get; private set; }
 
     public void EnableExplosiveBullets()
     {
@@ -254,9 +257,16 @@ public class ThirdPersonShooterController : MonoBehaviour
         StartCoroutine(TemporarilyDoubleDamage());
     }
     private IEnumerator TemporarilyDoubleDamage() {
-        damage *= 2;
-        yield return new WaitForSeconds(10);
-        damage /= 2;
+        System.Random rnd = new System.Random();
+        Num = rnd.Next(1,10);
+        if (Num.Equals(5)){
+            damage *= 3;
+            yield return new WaitForSeconds(2);
+            damage /= 3;
+        }
+        // damage *= 2;
+        // yield return new WaitForSeconds(10);
+        // damage /= 2;
     }
 
     public void ApplyLifeSteal(HealthBar healthBar)
