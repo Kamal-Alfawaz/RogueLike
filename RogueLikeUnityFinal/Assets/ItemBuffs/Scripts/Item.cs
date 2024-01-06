@@ -45,15 +45,9 @@ public class HealingItem : Item
         return "Healing Item";
     }
 
-    public override void OnHeal(ThirdPersonShooterController player, HealthBar healthBar, int count)
+    public override void OnPickupDamage(ThirdPersonShooterController player)
     {
-        if (player.health > player.maxHealth)
-        {
-            player.health = player.maxHealth;
-        }else{
-            player.health += 3 + (2 * count);
-            healthBar.UpdateHealthBar(player.health, player.maxHealth);
-        }
+        player.maxHealth += player.maxHealth * 0.1f;
     }
 }
 
