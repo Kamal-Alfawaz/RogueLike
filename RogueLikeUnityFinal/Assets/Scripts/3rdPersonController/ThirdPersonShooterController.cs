@@ -240,13 +240,14 @@ public class ThirdPersonShooterController : MonoBehaviour
     }
 
     public void StartDoubleDamageCoroutine() {
-        StartCoroutine(TemporarilyDoubleDamage());
+        damage *= 2;
+        // StartCoroutine(TemporarilyDoubleDamage());
     }
     
-    private IEnumerator TemporarilyDoubleDamage() {
-        damage *= 2;
-        yield return new WaitForSeconds(10);
-        damage /= 2;
-    }
+    // private IEnumerator TemporarilyDoubleDamage() {
+    //     // damage *= 2;
+    //     // // yield return new WaitForSeconds(10);
+    //     // // damage /= 2;
+    // }
 }
     
