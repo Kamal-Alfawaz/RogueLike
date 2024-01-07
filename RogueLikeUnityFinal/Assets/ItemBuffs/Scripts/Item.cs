@@ -164,8 +164,8 @@ public class LifeStealItem : Item
 }
 
 public class ExplosiveItem : Item
-{
-    GameObject effect;
+{ 
+    GameObject effect; 
 
     public override Sprite GetSprite()
     {
