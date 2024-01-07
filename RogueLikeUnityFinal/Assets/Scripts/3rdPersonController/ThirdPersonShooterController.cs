@@ -20,11 +20,15 @@ public class ThirdPersonShooterController : MonoBehaviour
     public ThirdPersonController thirdPersonController;
     private CharacterController characterController;
 
+    private AbilitiesCoolDown CoolDownIcon;
+
     // related to the character's gun's fire-rate and damage.
     public float impactForce = 30f;
     public float damage = 1f;
     public float range = 999f;
     public float fireRate = 15f;
+
+
 
     public int charmCount = 0;
 
@@ -79,6 +83,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         HitMarker = GetComponent<AudioSource>();
         healthBar = GetComponentInChildren<HealthBar>();
         characterController = GetComponent<CharacterController>();
+        CoolDownIcon = GetComponent<AbilitiesCoolDown>();
     }
 
     // update method gets called on every frame of the game, i.e use this method when u want to make stuff happen during the game
@@ -137,7 +142,9 @@ public class ThirdPersonShooterController : MonoBehaviour
 
         if(starterAssetsInputs.dash){
             StartCoroutine(Dash());
+            
             starterAssetsInputs.dash = false;
+
         }
 
         if(dashCdTimer > 0){
@@ -149,19 +156,21 @@ public class ThirdPersonShooterController : MonoBehaviour
         if(dashCdTimer > 0){
             yield break;
         }else dashCdTimer = dashCd;
+       
         Debug.Log("Dashing");
-
+        
         Vector3 cameraForward = Camera.main.transform.forward;
         cameraForward.y = 0;
         cameraForward.Normalize();
         
         Vector3 forceToApply = cameraForward * dashForce;
         float dashEndTime = Time.time + dashDuration;
-
+        
         while (Time.time < dashEndTime) {
             characterController.Move(forceToApply * Time.deltaTime);
             yield return null;
         }
+      
     }
     
     // //Related to the player's items
