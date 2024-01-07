@@ -1,6 +1,7 @@
 using System.Collections;
 using StarterAssets;
 using Unity.IO.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -15,7 +16,7 @@ public abstract class Item
 
     }
 
-    public virtual void OnPickupDamage(ThirdPersonShooterController player){
+    public virtual void OnPickup(ThirdPersonShooterController player){
 
     }
 
@@ -23,11 +24,7 @@ public abstract class Item
 
     }
 
-    public virtual void OnPickup(ThirdPersonController player){
-        
-    }
-
-    public virtual void OnDamage(ThirdPersonShooterController player, HealthBar healthBar, int count){
+    public virtual void OnDamage(ThirdPersonShooterController player, HealthBar healthBar, int count, RaycastHit hitInfo){
 
     }
 
@@ -45,7 +42,7 @@ public class HealingItem : Item
         return "Healing Item";
     }
 
-    public override void OnPickupDamage(ThirdPersonShooterController player)
+    public override void OnPickup(ThirdPersonShooterController player)
     {
         player.maxHealth += player.maxHealth * 0.1f;
     }
@@ -63,7 +60,7 @@ public class FireDamageItem : Item
         return "Fire Damage Item";
     }
 
-    public override void OnPickupDamage(ThirdPersonShooterController player){
+    public override void OnPickup(ThirdPersonShooterController player){
         player.damage += 10;
     }
 }
@@ -80,7 +77,7 @@ public class FireRateItem : Item
         return "Fire Rate Item";
     }
 
-    public override void OnPickupDamage(ThirdPersonShooterController player){
+    public override void OnPickup(ThirdPersonShooterController player){
         player.fireRate += 1f;
     }
 }
@@ -115,9 +112,9 @@ public class SpeedBoost : Item{
         return "Speed Boost";
     }
 
-    public override void OnPickup(ThirdPersonController player){
-        player.MoveSpeed += 1;
-        player.SprintSpeed += 1;
+    public override void OnPickup(ThirdPersonShooterController player){
+        player.thirdPersonController.MoveSpeed += 1;
+        player.thirdPersonController.SprintSpeed += 1;
     }
 }
 
@@ -131,7 +128,7 @@ public class DoubleDamageItem: Item{
         return "Double Damage Item";
     }
 
-    public override void OnPickupDamage(ThirdPersonShooterController player) {
+    public override void OnPickup(ThirdPersonShooterController player) {
         player.StartDoubleDamageCoroutine();
     }
 
@@ -149,7 +146,7 @@ public class LifeStealItem : Item
         return "Life Steal Item";
     }
 
-    public override void OnDamage(ThirdPersonShooterController player, HealthBar healthBar, int count){
+    public override void OnDamage(ThirdPersonShooterController player, HealthBar healthBar, int count, RaycastHit hitInfo){
         float healAmount = player.damage * (count * 0.02f);
 
         if (player.health == player.maxHealth)
@@ -163,6 +160,44 @@ public class LifeStealItem : Item
         }
         player.health += healAmount;
         healthBar.UpdateHealthBar(player.health, player.maxHealth);
+    }
+}
+
+public class ExplosiveItem : Item
+{
+    GameObject effect;
+
+    public override Sprite GetSprite()
+    {
+        return (Sprite)Resources.Load("ability images/explosive", typeof(Sprite));
+    }
+
+    public override string GiveName()
+    {
+        return "Explosive Item";
+    }
+
+    public override void OnDamage(ThirdPersonShooterController player, HealthBar healthBar, int count, RaycastHit hitInfo)
+    {
+        float explosionRadius = count * 1f;
+
+        if(effect == null) effect = (GameObject)Resources.Load("Item Effects/Explosion", typeof(GameObject));
+        Vector3 explosionPosition = hitInfo.point + hitInfo.normal * 0.1f;
+        GameObject Explosion = GameObject.Instantiate(effect, explosionPosition, Quaternion.Euler(Vector3.zero));
+        Explosion.transform.localScale *= explosionRadius;
+        GameObject.Destroy(Explosion, 0.4f);
+
+        // Get all colliders within the explosion radius
+        Collider[] colliders = Physics.OverlapSphere(explosionPosition, explosionRadius);
+
+        foreach (Collider hit in colliders)
+        {
+            if (hit.CompareTag("Enemy"))
+            {
+                // Apply the explosion damage to the enemy
+                hit.GetComponent<Enemy>().takeDamage(player.damage);
+            }
+        }
     }
 }
 

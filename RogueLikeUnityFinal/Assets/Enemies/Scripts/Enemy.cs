@@ -44,6 +44,7 @@ public class Enemy : MonoBehaviour
     private RandomSpawner SpawnerAndDifficulty;
 
     public WeightedRandomList<GameObject> lootTable;
+    private bool isDead = false;
 
     void Start(){
         SpawnerAndDifficulty = GameObject.Find("Spawner").GetComponent<RandomSpawner>();
@@ -128,6 +129,9 @@ public class Enemy : MonoBehaviour
     }
 
     public void takeDamage(float amount){
+        if (isDead) {
+            return;
+        }
         health -= amount;
         floatingHealthbar.UpdateHealthBar(health, maxHealth);
         if(FloatingTextPrefab){
@@ -163,6 +167,7 @@ public class Enemy : MonoBehaviour
     }
 
     void Die(){
+        isDead = true;
         Destroy(gameObject);
         Loot();
         SpawnerAndDifficulty.EnemyKilled();

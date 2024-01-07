@@ -99,8 +99,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDrop: 0
-  itemDisplayPrefab: {fileID: 0}
-  itemDisplayContainer: {fileID: 0}
 --- !u!54 &3822011090267598639
 Rigidbody:
   m_ObjectHideFlags: 0

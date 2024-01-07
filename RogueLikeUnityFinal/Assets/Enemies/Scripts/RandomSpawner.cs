@@ -116,8 +116,6 @@ public class RandomSpawner : MonoBehaviour
             // Increment the current number of enemies
             currentEnemies++;
 
-            baseSpawnRate += spawnRateModifier;
-
             // Reset the spawn timer with a modified spawn rate
             spawnTimer = baseSpawnRate * Mathf.Pow(spawnRateModifier, difficultyLevel - 1);
         }

@@ -17,7 +17,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     
     // related to the InputSystem, i.e anything input related you refer to these variables
     private StarterAssetsInputs starterAssetsInputs;
-    private ThirdPersonController thirdPersonController;
+    public ThirdPersonController thirdPersonController;
     private CharacterController characterController;
 
     // related to the character's gun's fire-rate and damage.
@@ -112,8 +112,7 @@ public class ThirdPersonShooterController : MonoBehaviour
                 if(target != null){
                     HitMarker.Play();
                     target.takeDamage(damage);
-                    CallItemOnDamage();
-                    // ApplyLifeSteal(healthBar);
+                    CallItemOnDamage(raycastHit);
                 }
             }
         }else{
@@ -146,11 +145,6 @@ public class ThirdPersonShooterController : MonoBehaviour
         }
     }
 
-    public void InventoryChanged()
-    {
-        OnInventoryChanged?.Invoke();
-    }
-
     private IEnumerator Dash(){
         if(dashCdTimer > 0){
             yield break;
@@ -179,9 +173,9 @@ public class ThirdPersonShooterController : MonoBehaviour
     //     StartCoroutine(CallItemUpdate());
     // }
 
-    public void CallItemOnDamage(){
+    public void CallItemOnDamage(RaycastHit hitInfo){
         foreach(ItemList i in items){
-            i.item.OnDamage(this, healthBar, i.count);
+            i.item.OnDamage(this, healthBar, i.count, hitInfo);
         }
     }
 
@@ -194,10 +188,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     public void CallItemOnPickup(Item pickedUpItem){
         foreach(ItemList i in items){
             if (i.item.GiveName() == pickedUpItem.GiveName()){
-                i.item.OnPickupDamage(this);
-            }
-            if(i.item.GiveName() == pickedUpItem.GiveName()){
-                i.item.OnPickup(thirdPersonController);
+                i.item.OnPickup(this);
             }
         }
     }

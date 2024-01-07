@@ -27,12 +27,10 @@ public class ItemPickup : MonoBehaviour
         foreach(ItemList i in player.items){
             if (i.name == item.GiveName()){
                 i.count += 1;
-                player.InventoryChanged();
                 return;
             }
         }
         player.items.Add(new ItemList(item, item.GiveName(), 1, item.GetSprite()));
-        player.InventoryChanged();
     }
 
     public Item AssignItem(Items itemToAssign){
@@ -49,6 +47,8 @@ public class ItemPickup : MonoBehaviour
                 return new DoubleDamageItem();
             case Items.LifeStealItem:
                 return new LifeStealItem();
+            case Items.ExplosiveItem:
+                return new ExplosiveItem();
             default:
                 return new HealingItem();
         }
@@ -63,4 +63,5 @@ public enum Items{
     RelativeHealItem,
     doubleDamageItem,
     LifeStealItem,
+    ExplosiveItem
 }
