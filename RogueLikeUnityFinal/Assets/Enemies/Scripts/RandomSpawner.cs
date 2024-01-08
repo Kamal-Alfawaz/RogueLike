@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class RandomSpawner : MonoBehaviour
 {
+    public int DifficultyLevel
+    {
+        get { return difficultyLevel; }
+    }
     //public GameObject BossPrefab;
     // The initial difficulty level
     public int difficultyLevel = 1;

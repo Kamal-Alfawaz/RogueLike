@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    public TMPro.TextMeshProUGUI timerText;
-
+    public TMPro.TextMeshProUGUI timerTextMinutesSeconds;
+    public TMPro.TextMeshProUGUI timerTextMilliseconds;
 
     private float startTime;
     private bool isTimerRunning;
@@ -32,18 +32,17 @@ public class Timer : MonoBehaviour
         if (isTimerRunning)
         {
             float timeElapsed = Time.time - startTime;
+
+            // Calculate minutes and seconds
             string minutes = ((int)timeElapsed / 60).ToString("00");
             string seconds = (timeElapsed % 60).ToString("00");
-            string milliseconds = ((int)(timeElapsed * 100f) % 100).ToString("00");
 
-            timerText.text = minutes + ":" + seconds + ":" + milliseconds;
-            if (int.Parse(minutes) == 2){
-            timerText.color = Color.red;
+            // Display minutes and seconds
+            timerTextMinutesSeconds.text = minutes + ":" + seconds;
 
+            // Calculate and display milliseconds
+            string milliseconds = ":"+((int)(timeElapsed * 100f) % 100).ToString("00");
+            timerTextMilliseconds.text = milliseconds;
         }
-        }
-        
     }
 }
-
-
