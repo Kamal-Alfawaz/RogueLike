@@ -13,6 +13,10 @@ public class CharShowcase : MonoBehaviour
         SceneManager.LoadScene("Stage_1");
     }
 
+    public void Back(){
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public void quitGame(){
         Debug.Log("Quit!");
         Application.Quit();

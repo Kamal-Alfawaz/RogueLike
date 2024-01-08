@@ -25,6 +25,6 @@ public class BossInteract : MonoBehaviour, IInteractable
 
     private void LoadNextScene()
     {
-        SceneManager.LoadScene("Testing");
+        SceneManager.LoadScene("Stage_2");
     }
 }

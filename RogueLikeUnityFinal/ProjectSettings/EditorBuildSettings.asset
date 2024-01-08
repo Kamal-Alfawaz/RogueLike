@@ -10,10 +10,13 @@ EditorBuildSettings:
     guid: d2e4102ade411a14f8e5e33145dbcf2a
   - enabled: 1
     path: Assets/Scenes/Stage_1.unity
-    guid: ad5bf6dd909520d428a492b645d49581
+    guid: a16e0e1eb3ce6a14da7789f15d11be73
   - enabled: 1
-    path: Assets/Scenes/Testing.unity
-    guid: e9017d5f96b9f09489b4b37e1d6eb914
+    path: Assets/Scenes/Stage_2.unity
+    guid: afdcd79a13c136b4da4b1e4a38005cf0
+  - enabled: 1
+    path: Assets/Scenes/CharShowCase.unity
+    guid: 830df0bb8bcd4dd49a56c7527125a54c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7,
       type: 2}

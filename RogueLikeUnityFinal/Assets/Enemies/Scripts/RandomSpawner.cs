@@ -103,9 +103,19 @@ public class RandomSpawner : MonoBehaviour
         // Check if an enemy should spawn and if the current enemies are less than the max enemies
         if (spawnTimer <= 0f && currentEnemies < maxEnemies)
         {
+            if (spawnPoints == null)
+            {
+                Debug.LogError("Spawn points are not set");
+                return;
+            }
             // Spawn an enemy at a random spawn point
             int randomIndex = Random.Range(0, spawnPoints.Length);
             Transform spawnPoint = spawnPoints[randomIndex];
+            if (spawnPoint == null)
+            {
+                Debug.LogError("Spawn point at index " + randomIndex + " is null");
+                return;
+            }
             GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
 
             // Adjust the enemy parameters based on the difficulty level
