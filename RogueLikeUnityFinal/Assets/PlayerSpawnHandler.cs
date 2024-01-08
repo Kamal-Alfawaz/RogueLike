@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerSpawnHandler : MonoBehaviour
 {
+    public string playerTag = "SpawnLocation";
 
     void Awake()
     {
-        GameObject player = GameObject.FindWithTag("Player");
+        GameObject player = GameObject.FindWithTag(playerTag);
 
         if (player != null)
         {

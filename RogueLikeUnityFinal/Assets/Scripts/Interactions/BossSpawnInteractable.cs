@@ -7,7 +7,7 @@ public class BossSpawnInteractable : MonoBehaviour, IInteractable{
     
     public GameObject bossPrefab;
     public GameObject interactionUI;
-    public Transform bossSpawnPoint;
+    public Transform bossSpawnPoint1;
     private Outline outline;
 
     void Start(){
@@ -19,8 +19,8 @@ public class BossSpawnInteractable : MonoBehaviour, IInteractable{
         // spawn boss
         Debug.Log("detected");
         activateCount++;
-        if (activateCount == 3){
-            Instantiate(bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);
+        if (activateCount == 4){
+            Instantiate(bossPrefab, bossSpawnPoint1.position, bossSpawnPoint1.rotation);
         }
         this.gameObject.SetActive(false);
     }

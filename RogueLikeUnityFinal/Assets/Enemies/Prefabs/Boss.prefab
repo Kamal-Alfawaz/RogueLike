@@ -214,9 +214,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 6619691527179574971}
-  currentCamera: {fileID: 0}
+  currentCamera: {fileID: 5791153071046894418, guid: 36fbc7b5870551e4185c1b3181c587ae,
+    type: 3}
   target: {fileID: 233421403742346151}
-  offset: {x: 0, y: 8, z: 0}
+  offset: {x: 0, y: 1.7, z: 0}
 --- !u!1 &4590331523389156036
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +234,7 @@ GameObject:
   - component: {fileID: 5485950937154077283}
   m_Layer: 3
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,8 +248,8 @@ Transform:
   m_GameObject: {fileID: 4590331523389156036}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.6, y: 28.6, z: 150.6}
-  m_LocalScale: {x: 6.464784, y: 6.464784, z: 6.464784}
+  m_LocalPosition: {x: 24.7, y: 33.92, z: 171.60321}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 385804287538734438}
@@ -343,9 +344,10 @@ MonoBehaviour:
   FloatingTextPrefab: {fileID: 939131762150373253, guid: b3cbd6c9d0ad30c4ab15b34f0dcd12ff,
     type: 3}
   healthBarDuration: 10
-  health: 100000
-  maxHealth: 100000
-  damage: 1
+  health: 20
+  maxHealth: 20
+  damage: 0
+  isBoss: 1
   agent: {fileID: 5485950937154077283}
   player: {fileID: 0}
   whatIsGround:
@@ -353,29 +355,43 @@ MonoBehaviour:
     m_Bits: 65
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 384
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
-  timeBetweenAttacks: 0.2
+  timeBetweenAttacks: 0.1
   projectile: {fileID: 3493214831625224174, guid: 70b7b571dd92c524f9ebecc692dcf29e,
     type: 3}
-  sightRange: 40
-  attackRange: 15
+  sightRange: 60
+  attackRange: 30
   playerInSightRange: 0
   playerInAttackRange: 0
   lootTable:
     list:
     - item: {fileID: 1550366604830811621, guid: 8ca5a3db19b65614ba945cb408d8300d,
         type: 3}
-      weight: 5
+      weight: 3
     - item: {fileID: 1899793871310144716, guid: 6cfe36a4c08521c4c92b27a8da538838,
         type: 3}
-      weight: 1
+      weight: 3
     - item: {fileID: 3493214831625224174, guid: c59fba0e71ef3c94a8900133e63298fe,
         type: 3}
-      weight: 1
+      weight: 3
+    - item: {fileID: 365228356607579045, guid: 0181ec0934c21c248b2417acfe6c3614, type: 3}
+      weight: 3
     - item: {fileID: 0}
-      weight: 10
+      weight: 1
+    - item: {fileID: 2953538907098955326, guid: d08345620abb64bb5a3274674781b1ac,
+        type: 3}
+      weight: 0
+    - item: {fileID: 1550366604830811621, guid: 82c0a47456a3b4250a9d359ce87db803,
+        type: 3}
+      weight: 0
+    - item: {fileID: 1550366604830811621, guid: e0f31134efc944124a889fd638eac846,
+        type: 3}
+      weight: 3
+    - item: {fileID: 5636947916118809516, guid: 9f9e3df2eaf061c42af1b25f5c081f90,
+        type: 3}
+      weight: 3
 --- !u!195 &5485950937154077283
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -347,6 +347,7 @@ MonoBehaviour:
   health: 300
   maxHealth: 300
   damage: 0
+  isBoss: 0
   agent: {fileID: 5485950937154077283}
   player: {fileID: 0}
   whatIsGround:

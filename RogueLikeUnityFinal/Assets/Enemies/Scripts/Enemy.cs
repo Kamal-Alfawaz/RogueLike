@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using Unity.Mathematics;
@@ -10,6 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] FloatingHealthbar floatingHealthbar;
 
     public GameObject FloatingTextPrefab;
+    public static event Action OnBossKilled;
 
     // The duration for which the health bar should be shown (in seconds)
     public float healthBarDuration = 10f;
@@ -20,6 +22,8 @@ public class Enemy : MonoBehaviour
     public float health = 1f;
     public float maxHealth = 1f;
     public float damage = 1f;
+
+    public bool isBoss = false;
 
     public NavMeshAgent agent;
 
@@ -166,7 +170,16 @@ public class Enemy : MonoBehaviour
         isAttacked = false;
     }
 
+    public void KillBoss()
+    {
+        OnBossKilled?.Invoke();
+    }
+
     void Die(){
+        if (isBoss)
+        {
+            KillBoss();
+        }
         isDead = true;
         Destroy(gameObject);
         Loot();

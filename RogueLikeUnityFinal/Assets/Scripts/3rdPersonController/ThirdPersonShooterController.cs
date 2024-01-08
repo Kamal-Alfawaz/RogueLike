@@ -133,9 +133,16 @@ public class ThirdPersonShooterController : MonoBehaviour
                 nextTimeToFire = Time.time + 1f / fireRate;
 
                 Enemy target = hitTransform.GetComponent<Enemy>();
+                BossEnemy bossTarget = hitTransform.GetComponent<BossEnemy>();
+
                 if(target != null){
                     HitMarker.Play();
                     target.takeDamage(damage);
+                    CallItemOnDamage(raycastHit);
+                }
+                else if(bossTarget != null){
+                    HitMarker.Play();
+                    bossTarget.takeDamage(damage);
                     CallItemOnDamage(raycastHit);
                 }
             }
