@@ -10,6 +10,8 @@ public class LoopInteract : MonoBehaviour, IInteractable
     public void Interact()
     {
         SceneManager.LoadScene(nextScene);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void InRange()

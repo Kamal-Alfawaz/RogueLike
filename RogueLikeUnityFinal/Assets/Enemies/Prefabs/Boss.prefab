@@ -344,8 +344,8 @@ MonoBehaviour:
   FloatingTextPrefab: {fileID: 939131762150373253, guid: b3cbd6c9d0ad30c4ab15b34f0dcd12ff,
     type: 3}
   healthBarDuration: 10
-  health: 20
-  maxHealth: 20
+  health: 100000
+  maxHealth: 100000
   damage: 0
   isBoss: 1
   agent: {fileID: 5485950937154077283}
