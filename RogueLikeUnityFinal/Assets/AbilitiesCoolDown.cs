@@ -13,13 +13,6 @@ public class AbilitiesCoolDown : MonoBehaviour
 
     public TextMeshProUGUI DashTimerText;
 
-    [Header("Grenade")]
-    public Image grenadeIcon;
-    public float grenadeCoolDown = 3;
-    bool isGrenading = false;
-
-    public TextMeshProUGUI GrenadeTimerText;
-
     [Header("Double Fire")]
     public Image doubleFireIcon;
     public float doubleFireCoolDown = 10;
@@ -39,8 +32,6 @@ public class AbilitiesCoolDown : MonoBehaviour
         dashIcon.fillAmount = 0;
         UpdateDashTimerText();
 
-        grenadeIcon.fillAmount = 0;
-        UpdateGrenadeTimerText();
 
         doubleFireIcon.fillAmount = 0;
         UpdateDoubleFireTimerText();
@@ -54,8 +45,6 @@ public class AbilitiesCoolDown : MonoBehaviour
         DashIconCooldown();
         UpdateDashTimerText();
 
-        GrenadeIconCooldown();
-        UpdateGrenadeTimerText();
 
         DoubleFireIconCooldown();
         UpdateDoubleFireTimerText();
@@ -96,37 +85,7 @@ public class AbilitiesCoolDown : MonoBehaviour
         }
     }
 
-    public void GrenadeIconCooldown()
-    {
-        Controller = GetComponent<ThirdPersonShooterController>();
-        if (isGrenading == false && Controller.starterAssetsInputs.grenade == true)
-        {
-            isGrenading = true;
-            grenadeIcon.fillAmount = 1;
-        }
-        if (isGrenading)
-        {
-            grenadeIcon.fillAmount -= 1 / grenadeCoolDown * Time.deltaTime;
-            if (grenadeIcon.fillAmount <= 0)
-            {
-                grenadeIcon.fillAmount = 0;
-                isGrenading = false;
-            }
-        }
-    }
 
-    void UpdateGrenadeTimerText()
-    {
-        if (Controller.starterAssetsInputs.grenade)
-        {
-            GrenadeTimerText.text = "";
-        }
-        else
-        {
-            float remainingTime = Mathf.Ceil(grenadeIcon.fillAmount * grenadeCoolDown);
-            GrenadeTimerText.text = remainingTime > 0 ? remainingTime.ToString() : "";
-        }
-    }
 
     public void DoubleFireIconCooldown()
     {

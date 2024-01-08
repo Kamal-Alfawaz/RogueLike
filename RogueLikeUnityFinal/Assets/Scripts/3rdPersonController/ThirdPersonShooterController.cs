@@ -154,13 +154,6 @@ public class ThirdPersonShooterController : MonoBehaviour
             CallItemOnJump();
         }
 
-        if(starterAssetsInputs.grenade){
-            StartCoroutine(Grenade());
-            Debug.Log("throwing grenade");
-            CoolDownIcon.GrenadeIconCooldown();
-            starterAssetsInputs.grenade = false;
-        }
-
         if(starterAssetsInputs.dash){
            
             StartCoroutine(Dash());
@@ -204,13 +197,6 @@ public class ThirdPersonShooterController : MonoBehaviour
       
     }
 
-    private IEnumerator Grenade(){
-        if(grenadeCdTimer > 0){
-            yield break;
-        }else grenadeCdTimer = grenadeCd;
-        Debug.Log("Throwing Grenade");
-        yield return new WaitForSeconds(1);
-    }
     
     private IEnumerator APBullets(){
         if(apBulletsCdTimer > 0){
