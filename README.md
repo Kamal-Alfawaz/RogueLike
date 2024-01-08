@@ -1,6 +1,6 @@
 # Manlike (Working Title),  Roguelike Survival Game
 
-Synopsis: Survive for a limited amount of time with ever increasing enemies and gradually increasing difficulty, assuring that your health points don't reach zero. Elinating opponents assures your survival with player buffs and passive healing to counteract enemy damage.
+Synopsis: Survive for a limited amount of time with ever increasing enemies and gradually increasing difficulty, assuring that your health points don't reach zero. Eliminating opponents assures your survival with player buffs and passive healing to counteract enemy damage.
 
 Instructions:
 ESC - Pause
@@ -27,3 +27,9 @@ https://assetstore.unity.com/packages/3d/props/low-poly-simple-medieval-props-25
 https://assetstore.unity.com/packages/3d/environments/landscapes/lowpoly-environment-pack-99479
 https://assetstore.unity.com/packages/3d/environments/landscapes/low-poly-simple-nature-pack-162153
 https://assetstore.unity.com/packages/2d/textures-materials/floors/outdoor-ground-textures-12555
+
+SketchFab Assets:
+
+Overseer: "Il Commendatore" (https://skfb.ly/6YDAp) by matousekfoto is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+mask (Item) - "TAKTICAL MASK" (https://skfb.ly/oMOxN) by Idmenthal is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+"Corrupted Boots" (https://skfb.ly/o6ysU) by Liam Moffitt is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
