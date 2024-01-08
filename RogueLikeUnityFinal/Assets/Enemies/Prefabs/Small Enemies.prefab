@@ -388,6 +388,9 @@ MonoBehaviour:
     - item: {fileID: 1550366604830811621, guid: e0f31134efc944124a889fd638eac846,
         type: 3}
       weight: 3
+    - item: {fileID: 5636947916118809516, guid: 9f9e3df2eaf061c42af1b25f5c081f90,
+        type: 3}
+      weight: 3
 --- !u!195 &5485950937154077283
 NavMeshAgent:
   m_ObjectHideFlags: 0
