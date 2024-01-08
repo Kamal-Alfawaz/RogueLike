@@ -16,18 +16,17 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private LayerMask aimColliderLayerMask;
     
     // related to the InputSystem, i.e anything input related you refer to these variables
-    private StarterAssetsInputs starterAssetsInputs;
+    public StarterAssetsInputs starterAssetsInputs;
     public ThirdPersonController thirdPersonController;
     private CharacterController characterController;
 
-    private AbilitiesCoolDown CoolDownIcon;
+    public AbilitiesCoolDown CoolDownIcon;
 
     // related to the character's gun's fire-rate and damage.
     public float impactForce = 30f;
     public float damage = 1f;
     public float range = 999f;
     public float fireRate = 15f;
-
 
 
     public int charmCount = 0;
@@ -45,6 +44,11 @@ public class ThirdPersonShooterController : MonoBehaviour
     public float dashDuration;
     public float dashCd;
     private float dashCdTimer;
+
+    [Header("Grenade")]
+
+    public float grenadeCd;
+    private float grenadeCdTimer;
 
     [Header("Health")]
     //related to character's Health
@@ -136,15 +140,19 @@ public class ThirdPersonShooterController : MonoBehaviour
         }
 
         if(starterAssetsInputs.grenade){
+            StartCoroutine(Grenade());
             Debug.Log("throwing grenade");
+            CoolDownIcon.GrenadeIconCooldown();
             starterAssetsInputs.grenade = false;
         }
 
         if(starterAssetsInputs.dash){
+           
             StartCoroutine(Dash());
-            
+         
+            CoolDownIcon.DashIconCooldown();
             starterAssetsInputs.dash = false;
-
+            
         }
 
         if(dashCdTimer > 0){
@@ -156,9 +164,10 @@ public class ThirdPersonShooterController : MonoBehaviour
         if(dashCdTimer > 0){
             yield break;
         }else dashCdTimer = dashCd;
+        
        
         Debug.Log("Dashing");
-        
+     
         Vector3 cameraForward = Camera.main.transform.forward;
         cameraForward.y = 0;
         cameraForward.Normalize();
@@ -171,6 +180,14 @@ public class ThirdPersonShooterController : MonoBehaviour
             yield return null;
         }
       
+    }
+
+    private IEnumerator Grenade(){
+        if(grenadeCdTimer > 0){
+            yield break;
+        }else grenadeCdTimer = grenadeCd;
+        Debug.Log("Throwing Grenade");
+        yield return new WaitForSeconds(1);
     }
     
     // //Related to the player's items
