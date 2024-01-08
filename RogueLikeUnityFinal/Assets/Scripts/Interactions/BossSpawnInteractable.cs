@@ -1,5 +1,3 @@
-
-
 using UnityEngine;
 
 public class BossSpawnInteractable : MonoBehaviour, IInteractable{
@@ -21,7 +19,7 @@ public class BossSpawnInteractable : MonoBehaviour, IInteractable{
         // spawn boss
         Debug.Log("detected");
         activateCount++;
-        if (activateCount == 4){
+        if (activateCount == 3){
             Instantiate(bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);
         }
         this.gameObject.SetActive(false);

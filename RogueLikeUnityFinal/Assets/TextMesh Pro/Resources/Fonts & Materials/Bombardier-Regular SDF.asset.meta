@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:RogueLikeUnityFinal/Assets/TextMesh Pro/Resources/Fonts & Materials/Bombardier-Regular SDF.asset.meta
 guid: 5e8dcbf626e509142ac70ecb231073c9
 NativeFormatImporter:
+========
+guid: 8c550ce6f3e00b14bab368a2f59be56e
+PrefabImporter:
+>>>>>>>> Stashed changes:RogueLikeUnityFinal/Assets/Scenes/InteractionCanvas.prefab.meta
   externalObjects: {}
   mainObjectFileID: 11400000
   userData: 

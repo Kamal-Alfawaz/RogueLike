@@ -179,7 +179,7 @@ public class ExplosiveItem : Item
 
     public override void OnDamage(ThirdPersonShooterController player, HealthBar healthBar, int count, RaycastHit hitInfo)
     {
-        float explosionRadius = count * 1f;
+        float explosionRadius = count * 0.4f;
 
         if(effect == null) effect = (GameObject)Resources.Load("Item Effects/Explosion", typeof(GameObject));
         Vector3 explosionPosition = hitInfo.point + hitInfo.normal * 0.1f;
