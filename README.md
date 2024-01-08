@@ -13,11 +13,14 @@ Ability1 - C
 Ability2 - R
 
 Third Party Assets used in conjunction
-
 Robot Hero Model: https://assetstore.unity.com/packages/3d/characters/robots/robot-hero-pbr-hp-polyart-106154
+
 Quick Outline Tool: https://assetstore.unity.com/packages/tools/particles-effects/quick-outline-115488
+
 Starter Assets: https://assetstore.unity.com/packages/essentials/starter-assets-thirdperson-updates-in-new-charactercontroller-pa-196526
-Free Low Poly Assets: https://assetstore.unity.com/packages/3d/environments/polygon-sampler-pack-207048, 
+
+Free Low Poly Assets: 
+https://assetstore.unity.com/packages/3d/environments/polygon-sampler-pack-207048, 
 https://assetstore.unity.com/packages/3d/environments/low-poly-fps-map-lite-258453, 
 https://assetstore.unity.com/packages/3d/environments/dungeons/low-poly-dungeons-lite-177937,
 https://assetstore.unity.com/packages/3d/props/low-poly-simple-medieval-props-258397,
