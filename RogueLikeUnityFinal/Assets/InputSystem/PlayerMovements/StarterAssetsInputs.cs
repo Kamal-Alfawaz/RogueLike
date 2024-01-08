@@ -17,6 +17,8 @@ namespace StarterAssets
 		// you then add a boolean if ur current state is throwing grenade
 		public bool grenade;
 		public bool dash;
+
+		public bool doubleFire;
 		public bool pause;
 
 		[Header("Movement Settings")]
@@ -66,6 +68,10 @@ namespace StarterAssets
 		public void OnPause(InputValue value){
 			PauseInput(value.isPressed);
 		}
+
+		public void OnDoubleFire(InputValue value){
+			DoubleFireInput(value.isPressed);
+		}
 		//
 #endif
 
@@ -106,6 +112,10 @@ namespace StarterAssets
 
 		public void PauseInput(bool newPauseState){
 			pause = newPauseState;
+		}
+
+		public void DoubleFireInput(bool newDoubleFireState){
+			doubleFire = newDoubleFireState;
 		}
 		// 
 

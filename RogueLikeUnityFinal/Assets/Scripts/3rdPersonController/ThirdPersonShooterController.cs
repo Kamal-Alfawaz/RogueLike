@@ -50,6 +50,19 @@ public class ThirdPersonShooterController : MonoBehaviour
     public float grenadeCd;
     private float grenadeCdTimer;
 
+    [Header("Double Fire")]
+
+    public float doubleFireBoost;
+
+    public float doubleFireDuration;
+    public float doubleFireCd;
+    private float doubleFireCdTimer;
+
+    [Header("AP Bullets")]
+    public float apBulletsCd;
+    private float apBulletsCdTimer;
+
+
     [Header("Health")]
     //related to character's Health
     [SerializeField] HealthBar healthBar;
@@ -105,6 +118,8 @@ public class ThirdPersonShooterController : MonoBehaviour
 
         // Boolean Check for when the person is clicking shoot button
         if (starterAssetsInputs.shoot){
+            StartCoroutine(APBullets());
+            CoolDownIcon.APBulletsIconCooldown();
             // this part handles the character's rotation towards where the player is aiming 
             thirdPersonController.SetRotationOnMove(false);
 
@@ -158,6 +173,13 @@ public class ThirdPersonShooterController : MonoBehaviour
         if(dashCdTimer > 0){
             dashCdTimer -= Time.deltaTime;
         }
+
+
+        if(starterAssetsInputs.doubleFire){
+            StartCoroutine(DoubleFire());
+            CoolDownIcon.DoubleFireIconCooldown();
+            starterAssetsInputs.doubleFire = false;
+        }
     }
 
     private IEnumerator Dash(){
@@ -190,6 +212,25 @@ public class ThirdPersonShooterController : MonoBehaviour
         yield return new WaitForSeconds(1);
     }
     
+    private IEnumerator APBullets(){
+        if(apBulletsCdTimer > 0){
+            yield break;
+        }else apBulletsCdTimer = apBulletsCd;
+        Debug.Log("AP Bullets");
+        yield return new WaitForSeconds(1);
+    }
+
+    private IEnumerator DoubleFire(){
+        if(doubleFireCdTimer > 0){
+            yield break;
+        }else doubleFireCdTimer = doubleFireCd;
+        Debug.Log("Double Firing");
+        damage *= doubleFireBoost;
+        yield return new WaitForSeconds(doubleFireDuration);
+        damage /= doubleFireBoost;
+    }
+
+
     // //Related to the player's items
     // IEnumerator CallItemUpdate(){
     //     foreach(ItemList i in items){

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class AbilitiesCoolDown : MonoBehaviour
 {
     public ThirdPersonShooterController Controller;
+
     [Header("Dash")]
     public Image dashIcon;
     public float dashCoolDown = 2;
@@ -33,8 +34,6 @@ public class AbilitiesCoolDown : MonoBehaviour
 
     public TextMeshProUGUI APBulletsTimerText;
 
-
-
     void Start()
     {
         dashIcon.fillAmount = 0;
@@ -43,11 +42,11 @@ public class AbilitiesCoolDown : MonoBehaviour
         grenadeIcon.fillAmount = 0;
         UpdateGrenadeTimerText();
 
-        // doubleFireIcon.fillAmount = 0;
-        // UpdateDoubleFireTimerText();
+        doubleFireIcon.fillAmount = 0;
+        UpdateDoubleFireTimerText();
 
-        // apBulletsIcon.fillAmount = 0;
-        // UpdateAPBulletsTimerText();
+        apBulletsIcon.fillAmount = 0;
+        UpdateAPBulletsTimerText();
     }
 
     void Update()
@@ -57,12 +56,12 @@ public class AbilitiesCoolDown : MonoBehaviour
 
         GrenadeIconCooldown();
         UpdateGrenadeTimerText();
-        
-        // DoubleFireIconCooldown();
-        // UpdateDoubleFireTimerText();
 
-        // APBulletsIconCooldown();
-        // UpdateAPBulletsTimerText();
+        DoubleFireIconCooldown();
+        UpdateDoubleFireTimerText();
+
+        APBulletsIconCooldown();
+        UpdateAPBulletsTimerText();
     }
 
     public void DashIconCooldown()
@@ -93,7 +92,7 @@ public class AbilitiesCoolDown : MonoBehaviour
         else
         {
             float remainingTime = Mathf.Ceil(dashIcon.fillAmount * dashCoolDown);
-            DashTimerText.text = remainingTime > 0 ? remainingTime.ToString("") : "";
+            DashTimerText.text = remainingTime > 0 ? remainingTime.ToString() : "";
         }
     }
 
@@ -125,74 +124,78 @@ public class AbilitiesCoolDown : MonoBehaviour
         else
         {
             float remainingTime = Mathf.Ceil(grenadeIcon.fillAmount * grenadeCoolDown);
-            GrenadeTimerText.text = remainingTime > 0 ? remainingTime.ToString("") : "";
+            GrenadeTimerText.text = remainingTime > 0 ? remainingTime.ToString() : "";
         }
     }
 
-    // public void DoubleFireIconCooldown()
-    // {
-    //     Controller = GetComponent<ThirdPersonShooterController>();
-    //     if (isDoubleFiring == false && Controller.starterAssetsInputs.doubleFire == true)
-    //     {
-    //         isDoubleFiring = true;
-    //         doubleFireIcon.fillAmount = 1;
-    //     }
-    //     if (isDoubleFiring)
-    //     {
-    //         doubleFireIcon.fillAmount -= 1 / doubleFireCoolDown * Time.deltaTime;
-    //         if (doubleFireIcon.fillAmount <= 0)
-    //         {
-    //             doubleFireIcon.fillAmount = 0;
-    //             isDoubleFiring = false;
-    //         }
-    //     }
-    // }
+    public void DoubleFireIconCooldown()
+    {
+        Controller = GetComponent<ThirdPersonShooterController>();
+        if (isDoubleFiring == false && Controller.starterAssetsInputs.doubleFire == true)
+        {
+            isDoubleFiring = true;
+            doubleFireIcon.fillAmount = 1;
+        }
+        if (isDoubleFiring)
+        {
+            doubleFireIcon.fillAmount -= 1 / doubleFireCoolDown * Time.deltaTime;
+            if (doubleFireIcon.fillAmount <= 0)
+            {
+                doubleFireIcon.fillAmount = 0;
+                isDoubleFiring = false;
+            }
+        }
+    }
 
-    // void UpdateDoubleFireTimerText()
-    // {
-    //     if (Controller.starterAssetsInputs.doubleFire)
-    //     {
-    //         DoubleFireTimerText.text = "";
-    //     }
-    //     else
-    //     {
-    //         float remainingTime = Mathf.Ceil(doubleFireIcon.fillAmount * doubleFireCoolDown);
-    //         DoubleFireTimerText.text = remainingTime > 0 ? remainingTime.ToString("") : "";
-    //     }
-    // }
+    void UpdateDoubleFireTimerText()
+    {
+        if (Controller.starterAssetsInputs.doubleFire)
+        {
+            DoubleFireTimerText.text = "";
+        }
+        else
+        {
+            float remainingTime = Mathf.Ceil(doubleFireIcon.fillAmount * doubleFireCoolDown);
+            DoubleFireTimerText.text = remainingTime > 0 ? remainingTime.ToString() : "";
+        }
+    }
 
-    // public void APBulletsIconCooldown()
-    // {
-    //     Controller = GetComponent<ThirdPersonShooterController>();
-    //     if (isAPBullets == false && Controller.starterAssetsInputs.apBullets == true)
-    //     {
-    //         isAPBullets = true;
-    //         apBulletsIcon.fillAmount = 1;
-    //     }
-    //     if (isAPBullets)
-    //     {
-    //         apBulletsIcon.fillAmount -= 1 / apBulletsCoolDown * Time.deltaTime;
-    //         if (apBulletsIcon.fillAmount <= 0)
-    //         {
-    //             apBulletsIcon.fillAmount = 0;
-    //             isAPBullets = false;
-    //         }
-    //     }
-    // }
+    public void APBulletsIconCooldown()
+    {
+        Controller = GetComponent<ThirdPersonShooterController>();
 
-    // void UpdateAPBulletsTimerText()
-    // {
-    //     if (Controller.starterAssetsInputs.apBullets)
-    //     {
-    //         APBulletsTimerText.text = "";
-    //     }
-    //     else
-    //     {
-    //         float remainingTime = Mathf.Ceil(apBulletsIcon.fillAmount * apBulletsCoolDown);
-    //         APBulletsTimerText.text = remainingTime > 0 ? remainingTime.ToString("") : "";
-    //     }
-    // }
+        if (Controller.starterAssetsInputs.shoot)
+        {
+            if (isAPBullets == false)
+            {
+                isAPBullets = true;
+                apBulletsIcon.fillAmount = 1;
+            }
 
+            apBulletsIcon.fillAmount -= 1 / apBulletsCoolDown * Time.deltaTime;
+            if (apBulletsIcon.fillAmount <= 0)
+            {
+                apBulletsIcon.fillAmount = 0;
+                isAPBullets = false;
+            }
+        }
+        else
+        {
+            apBulletsIcon.fillAmount = 0;
+            isAPBullets = false;
+        }
+    }
+
+    void UpdateAPBulletsTimerText()
+    {
+        if (Controller.starterAssetsInputs.shoot)
+        {
+            APBulletsTimerText.text = "";
+        }
+        else
+        {
+            float remainingTime = Mathf.Ceil(apBulletsIcon.fillAmount * apBulletsCoolDown);
+            APBulletsTimerText.text = remainingTime > 0 ? remainingTime.ToString() : "";
+        }
+    }
 }
-
-
