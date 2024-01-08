@@ -8,11 +8,13 @@ interface IInteractable
     public void Interact();
     public void InRange();
     public void OutOfRange();
+    
 }
 
 public class Interactor : MonoBehaviour
 {
     public float InteractRange;
+    public int counter = 0;
     private IInteractable currentInteractable = null;
     PauseMenu action;
 
